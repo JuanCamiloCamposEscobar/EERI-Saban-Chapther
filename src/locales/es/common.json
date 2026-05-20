@@ -1,0 +1,38 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Institucional",
+    "events": "Eventos",
+    "projects": "Proyectos",
+    "blog": "Blog",
+    "login": "Iniciar Sesión"
+  },
+  "home": {
+    "hero_title": "Impulsando la Resiliencia Sísmica",
+    "hero_subtitle": "Únete al Capítulo Estudiantil del Earthquake Engineering Research Institute en la Universidad de La Sabana.",
+    "view_projects": "Ver Proyectos",
+    "learn_more": "Saber Más"
+  },
+  "institutional": {
+    "who_we_are": "Quiénes Somos",
+    "mission": "Misión",
+    "vision": "Visión",
+    "board": "Mesa Directiva",
+    "timeline": "Nuestra Trayectoria"
+  },
+  "events": {
+    "upcoming": "Próximos Eventos",
+    "register": "Inscribirse",
+    "full": "Agotado",
+    "capacity": "Capacidad"
+  },
+  "projects": {
+    "portfolio": "Portafolio de Proyectos",
+    "impact": "Impacto en el Mundo Real y Resiliencia Sísmica"
+  },
+  "blog": {
+    "title": "Publicaciones y Reportes",
+    "back": "Volver al blog",
+    "read_more": "Leer más"
+  }
+}

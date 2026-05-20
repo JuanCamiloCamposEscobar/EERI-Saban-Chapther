@@ -1,0 +1,16 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "about": "Institutionell",
+    "events": "Veranstaltungen",
+    "projects": "Projekte",
+    "blog": "Blog",
+    "login": "Anmelden"
+  },
+  "home": {
+    "hero_title": "Förderung der Erdbebenresilienz",
+    "hero_subtitle": "Treten Sie dem Student Chapter des Earthquake Engineering Research Institute an der Universität La Sabana bei.",
+    "view_projects": "Projekte anzeigen",
+    "learn_more": "Mehr erfahren"
+  }
+}

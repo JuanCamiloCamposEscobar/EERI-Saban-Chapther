@@ -1,0 +1,16 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "Institutionnel",
+    "events": "Événements",
+    "projects": "Projets",
+    "blog": "Blog",
+    "login": "Se connecter"
+  },
+  "home": {
+    "hero_title": "Faire Progresser la Résilience Sismique",
+    "hero_subtitle": "Rejoignez le chapitre étudiant de l'Earthquake Engineering Research Institute à l'Université de La Sabana.",
+    "view_projects": "Voir les projets",
+    "learn_more": "En savoir plus"
+  }
+}

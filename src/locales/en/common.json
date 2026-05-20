@@ -1,0 +1,38 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "Institutional",
+    "events": "Events",
+    "projects": "Projects",
+    "blog": "Blog",
+    "login": "Sign In"
+  },
+  "home": {
+    "hero_title": "Advancing Earthquake Resilience",
+    "hero_subtitle": "Join the Student Chapter of the Earthquake Engineering Research Institute at Universidad de La Sabana.",
+    "view_projects": "View Projects",
+    "learn_more": "Learn More"
+  },
+  "institutional": {
+    "who_we_are": "Who We Are",
+    "mission": "Mission",
+    "vision": "Vision",
+    "board": "Executive Board",
+    "timeline": "Our History"
+  },
+  "events": {
+    "upcoming": "Upcoming Events",
+    "register": "Register",
+    "full": "Full",
+    "capacity": "Capacity"
+  },
+  "projects": {
+    "portfolio": "Project Portfolio",
+    "impact": "Real-world Impact & Seismic Resilience"
+  },
+  "blog": {
+    "title": "Publications & Reports",
+    "back": "Back to blog",
+    "read_more": "Read more"
+  }
+}
