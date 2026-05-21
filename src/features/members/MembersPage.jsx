@@ -3,8 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Users, Calendar, Megaphone, ShieldCheck, Wrench, Layers } from 'lucide-react';
 
 // Importación centralizada de la instancia de Supabase
-import { supabase } from '../../supabaseClient';
-import { v4 as uuidv4 } from 'uuid';
+import { supabase } from '../../supabaseClient'
 
 // Assets
 import background5 from '../../assets/backgrounds/Background_5.png';
@@ -191,14 +190,14 @@ const MembersPage = () => {
 
     try {
       if (!supabase) {
-        throw new Error("Supabase no está configurado correctamente en supabaseClient.js");
+        throw new Error("Supabase no está configurado correctamente en App.jsx");
       }
 
       const { error } = await supabase
         .from('inscripcion_eeri')
+        // Usamos .select() vacio o simplemente .insert() con un objeto que NO tenga id
         .insert([
           {
-            id: uuidv4(),
             full_name: form.name,
             student_id: form.studentId,
             email: form.email,
@@ -207,7 +206,7 @@ const MembersPage = () => {
             committee: form.selectedCommittee,
             motivation: form.motivation,
           },
-        ]);
+        ], { returning: 'minimal' });
 
       if (error) {
         console.error('Error de Supabase:', error);
