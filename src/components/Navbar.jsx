@@ -13,7 +13,7 @@ const navItems = [
   { name: "Proyectos", translationKey: "projects", path: "/projects" },
   { name: "Blog", translationKey: "blog", path: "/blog" },
   { name: "Miembros", translationKey: "members", path: "/members" },
-  { name: "Donaciones", translationKey: "donations", path: "/donations" },
+  { name: "Fondos", translationKey: "Funding", path: "/donations" },
 ];
 
 const Navbar = () => {

@@ -7,61 +7,65 @@ import background6 from '../../assets/backgrounds/Background_6.png';
 const MOCK_EVENTS = [
   {
     id: '1',
-    title: 'Andean Masonry Retrofit',
-    version: '4.2.0-ESTABLE',
+    title: 'Inauguración: Árbol de Conexiones',
+    version: '1.0.0-EVENT',
     coordinates: 'COORD: 4.8616° N, 74.0334° W',
-    anomaly: 'ANOMALÍA ESTRUCTURAL: Tensión en Muro de Cortante',
-    description: 'Aprende los fundamentos del diseño sísmico y reforzamiento con SAP2000 junto a expertos del capítulo.',
-    date: '2026-06-15',
-    type: 'WEBINAR',
-    image: 'https://images.unsplash.com/photo-1581094288338-2314dddb7ecc?auto=format&fit=crop&w=800&q=80',
-    capacity: 50,
-    registered: 38,
-    location: 'Microsoft Teams',
-    requirements: [
-      'Comprensión avanzada de análisis lineal en SAP2000',
-      'Instalación del complemento académico de O365',
-      'Conjunto de datos: Ondas Sísmicas Andinas 2024 (precargado)'
-    ]
+    anomaly: 'CEREMONIA OFICIAL: Símbolo de Innovación',
+    description: 'Inauguración de la escultura donada por TECMO S.A. Un espacio para celebrar el aprendizaje, la ingeniería y el crecimiento colectivo en nuestra Universidad de La Sabana.',
+    date: '2026-05-27',
+    type: 'IN_PERSON',
+    image: '/Eventos/Precensial/InauguracionArbol.jpg',
+    capacity: 150,
+    registered: 0,
+    location: 'Fablab, Zona Árbol de Conexiones',
+    requirements: ['Registro previo obligatorio', 'Puntualidad en la ceremonia'],
+    registrationLink: 'https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=MRalrP4ADUmRqxY--HJg7iN3eQWGHKNLl0RNgFTjwO…'
   },
   {
     id: '2',
-    title: 'Visita Técnica: Edificio Ad Portas',
-    version: '1.0.3-TERRENO',
-    coordinates: 'COORD: 4.8621° N, 74.0329° W',
-    anomaly: 'INSPECCIÓN DE CAMPO: Verificación de Juntas Sismoresistentes',
-    description: 'Recorrido técnico guiado por las instalaciones del nuevo complejo estructural en el campus de la Universidad de La Sabana.',
-    date: '2026-06-20',
+    title: 'Conf. 01: Edificio Atrio',
+    version: '1.0.1-CONF',
+    coordinates: 'COORD: 4.8616° N, 74.0334° W',
+    anomaly: 'CONFERENCIA: Diseño Estructural',
+    description: 'Diseño estructural del edificio “Atrio”. Ponente: Ing. Gabriel Valencia Clement, Profesor universitario y gerente de TECMO S.A.',
+    date: '2026-05-27',
     type: 'IN_PERSON',
-    image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80',
-    capacity: 20,
-    registered: 18,
-    location: 'Campus Universidad de La Sabana',
-    requirements: [
-      'Uso obligatorio de botas de seguridad y casco tipo II',
-      'Carnet vigente de la Universidad de La Sabana',
-      'Lectura previa del plano de cimentación estructural del módulo'
-    ]
+    image: '/Eventos/Precensial/InauguracionArbol.jpg', // Misma imagen del evento base
+    capacity: 50,
+    registered: 0,
+    location: 'Fablab, Salón Práctica Libre',
+    requirements: ['Horario: 9:00 a.m.']
   },
   {
     id: '3',
-    title: 'Presentación del Equipo SDC',
-    version: '2.1.0-COMPETICIÓN',
-    coordinates: 'COORD: 4.8614° N, 74.0341° W',
-    anomaly: 'SIMULACIÓN DE MESA DE VIBRACIÓN: Análisis de Derivas Máximas',
-    description: 'Presentación oficial y defense de la propuesta estructural para la Seismic Design Competition 2026.',
-    date: '2026-07-01',
-    type: 'HYBRID',
-    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80',
-    capacity: 100,
-    registered: 60,
-    location: 'Auditorio Principal / En vivo',
-    requirements: [
-      'Revisión del reglamento oficial de la competencia EERI 2026',
-      'Registro activo en la plataforma del Capítulo Estudiantil',
-      'Descarga del modelo analítico de la estructura a escala'
-    ]
+    title: 'Conf. 02: Soldadura en Acero',
+    version: '1.0.2-CONF',
+    coordinates: 'COORD: 4.8616° N, 74.0334° W',
+    anomaly: 'CONFERENCIA: Resistencia Sísmica',
+    description: 'Soldadura para Sistemas de Resistencia Sísmica en Acero. Ponente: Ing. Luis Enrique Rodríguez, Profesor universitario y subgerente de TECMO S.A.',
+    date: '2026-05-27',
+    type: 'IN_PERSON',
+    image: '/Eventos/Precensial/InauguracionArbol.jpg',
+    capacity: 50,
+    registered: 0,
+    location: 'Fablab, Salón Práctica Libre',
+    requirements: ['Horario: 10:00 a.m. (aprox)']
   },
+  {
+    id: '4',
+    title: 'Conf. 03: Puente Anchorage',
+    version: '1.0.3-CONF',
+    coordinates: 'COORD: 4.8616° N, 74.0334° W',
+    anomaly: 'CONFERENCIA: Evaluación Sísmica',
+    description: 'Evaluación Sísmica del Puente de Acceso a Anchorage, Alaska. Ponente: Ing. Diego Roberto Martínez, Profesor Asociado, Universidad de La Sabana.',
+    date: '2026-05-27',
+    type: 'IN_PERSON',
+    image: '/Eventos/Precensial/InauguracionArbol.jpg',
+    capacity: 50,
+    registered: 0,
+    location: 'Fablab, Salón Práctica Libre',
+    requirements: ['Horario: 11:00 a.m. (aprox)']
+  }
 ];
 
 const TYPE_STYLES = {
@@ -90,6 +94,7 @@ const EventsPage = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [zoomedImage, setZoomedImage] = useState(null);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
   useEffect(() => {
@@ -287,32 +292,70 @@ const EventsPage = () => {
                     </div>
                   </div>
 
-                  {/* MONITOR CON IMAGEN DE FONDO */}
-                  <div className="w-full h-56 sm:h-64 md:h-80 border border-white/10 bg-[#000f1f]/85 relative overflow-hidden flex items-center justify-center rounded-none bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[length:20px_20px]">
+                  {/* MONITOR CON IMAGEN DE FONDO - RESPONSIVO */}
+                  <div className="w-full h-56 sm:h-64 md:h-80 border border-white/10 bg-[#000f1f]/85 relative overflow-hidden flex items-center justify-center rounded-none bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[length:20px_20px] touch-pan-y">
 
                     {selectedEvent.image && (
                       <img
                         src={selectedEvent.image}
                         alt={selectedEvent.title}
-                        className="absolute inset-0 w-full h-full object-cover opacity-90 pointer-events-none mix-blend-screen"
+                        className="absolute inset-0 w-full h-full object-cover opacity-90 mix-blend-screen"
                       />
                     )}
 
-                    {/* INDICADOR DE MODALIDAD CON MÁXIMA LEGIBILIDAD */}
+                    {/* INDICADOR DE MODALIDAD */}
                     <span className={`absolute top-3 left-4 font-mono text-[10px] font-black px-2.5 py-1.5 uppercase tracking-widest z-10 backdrop-blur-md bg-opacity-95 rounded-none drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] ${TYPE_STYLES[selectedEvent.type]}`}>
                       MODALIDAD: {TYPE_LABELS[selectedEvent.type] || selectedEvent.type}
                     </span>
 
-                    <div className="absolute top-3 right-4 flex gap-1.5 z-10">
-                      <button className="w-6 h-6 border border-white/20 bg-[#001124]/90 text-white/70 text-xs flex items-center justify-center">🔍</button>
-                      <button className="w-6 h-6 border border-white/20 bg-[#001124]/90 text-white/70 text-xs flex items-center justify-center">🔄</button>
+                    {/* BOTONES DE CONTROL (Optimizados para móvil y escritorio) */}
+                    <div className="absolute top-3 right-4 flex gap-2 z-30">
+                      <button
+                        onClick={() => setZoomedImage(selectedEvent.image)}
+                        className="w-10 h-10 border border-white/30 bg-[#001124]/90 text-white flex items-center justify-center active:bg-[#ab3424] transition-all shadow-lg active:scale-95"
+                        style={{ WebkitTapHighlightColor: 'transparent' }}
+                        aria-label="Ampliar imagen"
+                      >
+                        <span className="text-lg">🔍</span>
+                      </button>
+                      <button
+                        onClick={() => window.location.reload()}
+                        className="w-10 h-10 border border-white/30 bg-[#001124]/90 text-white flex items-center justify-center active:bg-[#ab3424] transition-all shadow-lg active:scale-95"
+                        style={{ WebkitTapHighlightColor: 'transparent' }}
+                        aria-label="Recargar"
+                      >
+                        <span className="text-lg">🔄</span>
+                      </button>
                     </div>
 
+                    {/* ANOMALÍA / ESTADO */}
                     <div className="absolute bottom-4 left-4 right-4 bg-[#ff5540] text-[#000913] px-3 py-2 font-mono text-[9px] sm:text-[10px] font-bold uppercase tracking-wide border-l-4 border-white flex items-center shadow-lg z-10">
                       <span className="animate-pulse mr-2 shrink-0">●</span>
                       <span className="truncate">{selectedEvent.anomaly || 'ESTADO ESTRUCTURAL: NOMINAL / VERIFICADO'}</span>
                     </div>
                   </div>
+
+                  {/* LIGHTBOX (Colócalo una sola vez en el componente, fuera del monitor) */}
+                  <AnimatePresence>
+                    {zoomedImage && (
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={() => setZoomedImage(null)}
+                        className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 cursor-zoom-out p-4 backdrop-blur-sm"
+                      >
+                        <img
+                          src={zoomedImage}
+                          alt="Vista ampliada"
+                          className="max-w-full max-h-full object-contain border border-white/10 shadow-2xl"
+                        />
+                        <span className="absolute top-6 right-6 text-white/50 text-xs font-mono uppercase tracking-widest">
+                          [ Click para cerrar ]
+                        </span>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
 
                   {/* SECCIÓN DETALLES */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">

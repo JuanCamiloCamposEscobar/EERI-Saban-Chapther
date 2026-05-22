@@ -24,7 +24,7 @@ const navItems = [
   { name: "Proyectos", translationKey: "projects", path: "/projects", icon: Briefcase },
   { name: "Blog", translationKey: "blog", path: "/blog", icon: BookOpen },
   { name: "Miembros", translationKey: "members", path: "/members", icon: Users },
-  { name: "Donaciones", translationKey: "donations", path: "/donations", icon: Heart },
+  { name: "Fondos", translationKey: "Funding", path: "/donations", icon: Heart },
 ];
 
 const MobileNavbar = () => {
