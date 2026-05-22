@@ -35,10 +35,10 @@ const itemVariants = {
 };
 
 const BOARD = [
-  { name: 'Juan Camilo Buitrago', role: 'Presidente', initials: 'JC', photo: '/avatar-presidente.png' },
-  { name: 'Juan Camilo Campos', role: 'Vicepresidente', initials: 'JC', photo: '/avatar-vicepresidente.png' },
-  { name: 'Thomas Garcia', role: 'Secretario', initials: 'TG', photo: '/avatar-secretario.png' },
-  { name: 'Daniel Martinez', role: 'Tesorero', initials: 'DM', photo: '/avatar-tesorero.png' },
+  { name: 'Juan Camilo Buitrago', role: 'Presidente', initials: 'JC', photo: '/Members/Presidente.jpeg' },
+  { name: 'Juan Camilo Campos', role: 'Vicepresidente', initials: 'JC', photo: '/Members/vicepresidente.png' },
+  { name: 'Thomas Garcia', role: 'Secretario', initials: 'TG', photo: '' },
+  { name: 'Daniel Martinez', role: 'Tesorero', initials: 'DM', photo: '' },
 ];
 
 const TimelinePoint = ({ year }) => {
