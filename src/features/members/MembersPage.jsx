@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Users, Calendar, Megaphone, ShieldCheck, Wrench, Layers } from 'lucide-react';
+import { Users, Calendar, Megaphone, ShieldCheck, Wrench, Award } from 'lucide-react';
+
 
 // Importación centralizada de la instancia de Supabase
 import { supabase } from '../../supabaseClient'
@@ -21,41 +22,41 @@ const MEMBERS = [
   {
     name: 'Juan Camilo Buitrago',
     role: 'Presidente',
-    semester: '7°',
-    linkedin: '#',
-    photo: '/avatar-presidente.png',
+    semester: '8°',
+    linkedin: 'https://www.linkedin.com/in/juan-camilo-buitrago-hurtado',
+    photo: '/Members/Presidente.jpeg',
     quote: 'Liderando la innovación sismorresistente desde la academia.'
   },
   {
     name: 'Juan Camilo Campos',
     role: 'Vicepresidente',
     semester: '4°',
-    linkedin: '#',
-    photo: '/avatar-vicepresidente.png',
+    linkedin: 'https://www.linkedin.com/in/juan-camilo-campos-escobar-a6a3533b5?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+    photo: '/Members/vicepresidente.png',
     quote: 'Coordinando esfuerzos para la gestión del riesgo y diseño avanzado.'
   },
   {
-    name: 'Thomas García',
+    name: 'Thomas Alejandro Leon Garcia',
     role: 'Secretario',
-    semester: '5°',
+    semester: '9°',
     linkedin: '#',
-    photo: '/avatar-secretario.png',
+    photo: '',
     quote: 'Estructurando la documentación y el rigor técnico del capítulo.'
   },
   {
-    name: 'Daniel Martínez',
+    name: 'Daniel Alejandro Parra Guerrero',
     role: 'Tesorero',
-    semester: '6°',
+    semester: '9°',
     linkedin: '#',
-    photo: '/avatar-tesorero.png',
+    photo: '',
     quote: 'Optimizando recursos para viabilizar la investigación y el desarrollo.'
   },
   { name: 'Laura Artunduaga', role: 'Miembro Activo', semester: '4°', linkedin: '#', photo: '' },
-  { name: 'Angela', role: 'Miembro Activo', semester: '4°', linkedin: '#', photo: '' },
+  { name: 'Angela Maria Opsino Julio', role: 'Miembro Activo', semester: '4°', linkedin: '#', photo: '' },
   { name: 'Juan Felipe Arroyave', role: 'Miembro Activo', semester: '4°', linkedin: '#', photo: '' },
   { name: 'Juan Daniel Salcedo Urango', role: 'Miembro Activo', semester: '4°', linkedin: '#', photo: '' },
-  { name: 'María Fernanda Díaz', role: 'Miembro Activo', semester: '6°', linkedin: '#', photo: '' },
-  { name: 'Santiago Peña', role: 'Miembro Activo', semester: '5°', linkedin: '#', photo: '' },
+  { name: 'Pedro Nicolás Cortés Rojas', role: 'Miembro Activo', semester: 'Practicas', linkedin: '#', photo: '' },
+  { name: 'Germán Darío Hernández Mora ', role: 'Miembro Activo', semester: 'Practicas', linkedin: '#', photo: '' },
   { name: 'Laura Jiménez', role: 'Miembro Activo', semester: '4°', linkedin: '#', photo: '' },
   { name: 'Miguel Ángel Ruiz', role: 'Miembro Activo', semester: '7°', linkedin: '#', photo: '' },
 ];
@@ -69,12 +70,12 @@ const STATS = [
 
 // Actualizado a los 6 comités requeridos con su metadata correspondiente
 const COMMITTEES = [
-  { id: 'EERI-INV', title: 'Comité de Investigación', desc: 'Enfocado en la simulación sísmica y análisis de vulnerabilidad estructural.', icon: Users, leader: 'Juan Camilo Campos', students: 12 },
+  { id: 'EERI-INV', title: 'Comité de Investigación', desc: 'Enfocado en la simulación sísmica y análisis de vulnerabilidad estructural.', icon: Users, leader: 'Juan Camilo Buitrago', students: 12 },
   { id: 'EERI-EVE', title: 'Comité de Eventos', desc: 'Organización de seminarios técnicos, visitas de campo y logística para el SDC.', icon: Calendar, leader: 'Mariana Rodríguez', students: 8 },
   { id: 'EERI-COM', title: 'Comité de Comunicación', desc: 'Gestión de identidad visual, publicaciones académicas y difusión de actividades.', icon: Megaphone, leader: 'Andrés Felipe Mora', students: 6 },
   { id: 'EERI-LOG', title: 'Comité de Logística', desc: 'Coordinación de materiales, espacios físicos y recursos técnicos para talleres.', icon: Wrench, leader: 'Laura Sofía Gómez', students: 5 },
-  { id: 'EERI-ACA', title: 'Comité Académico', desc: 'Supervisión de módulos de integridad, tutorías internas y capacitaciones.', icon: ShieldCheck, leader: 'Carlos Eduardo Páez', students: 7 },
-  { id: 'EERI-REL', title: 'Comité de Relaciones Externas', desc: 'Vinculación con la industria, universidades y gestión de patrocinios.', icon: Layers, leader: 'Valentina Restrepo', students: 4 }
+  { id: 'EERI-FON', title: 'Comité Fondos', desc: 'Supervisión de módulos de integridad, tutorías internas y capacitaciones.', icon: ShieldCheck, leader: 'Laura Artunduaga', students: 7 },
+  { id: 'EERI-SDC', title: 'Comité de SDC', desc: 'Vinculación con la industria, universidades y gestión de patrocinios.', icon: Award, leader: 'Angela Maria Opsino Julio', students: 4 }
 ];
 
 const ROLE_COLORS = {
@@ -346,14 +347,16 @@ const MembersPage = () => {
                     DIR-{String(i + 1).padStart(3, '0')}
                   </span>
 
-                  <div className="w-24 h-24 mb-4 border border-blue-500/20 group-hover:border-blue-400 transition-all rounded-sm overflow-hidden bg-blue-500/5 flex items-center justify-center relative">
+                  {/* Contenedor de Foto - AQUÍ ESTÁ EL CENTRADO */}
+                  <div className="w-24 h-28 mb-4 border border-blue-500/20 group-hover:border-blue-400 transition-all rounded-sm overflow-hidden bg-black/40 flex items-center justify-center relative">
                     {member.photo ? (
+
                       <img
                         src={member.photo}
                         alt={member.name}
-                        className="w-full h-full object-cover filter grayscale contrast-125 group-hover:grayscale-0 transition-all duration-300"
-                        onError={(e) => { e.target.style.display = 'none'; }}
+                        className="w-full h-full object-cover object-top filter grayscale contrast-125 group-hover:grayscale-0 transition-all duration-300"
                       />
+
                     ) : (
                       <span className="font-mono font-bold text-lg text-blue-400/60">
                         {member.name.split(' ').map(w => w[0]).slice(0, 2).join('')}
@@ -361,9 +364,23 @@ const MembersPage = () => {
                     )}
                   </div>
 
+                  {/* Información siempre visible */}
                   <h4 className="font-bold text-md tracking-wide mb-2 text-white/95">
                     {member.name}
                   </h4>
+
+                  {/* Lógica del Botón de LinkedIn */}
+                  {member.linkedin && member.linkedin !== '#' && (
+                    <a
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mb-2 text-[10px] font-mono font-bold text-blue-400 hover:text-white underline uppercase transition-all"
+                    >
+                      Ver LinkedIn
+                    </a>
+                  )}
+
                   <span className={`px-2.5 py-0.5 text-[9px] font-mono font-bold uppercase tracking-widest rounded-sm mb-3 ${ROLE_COLORS[member.role]}`}>
                     {member.role}
                   </span>
@@ -622,7 +639,7 @@ const MembersPage = () => {
                               type="text"
                               value={form.name}
                               onChange={e => setForm({ ...form, name: e.target.value })}
-                              placeholder="John Doe"
+                              placeholder="Juan Carlos"
                               className={`w-full bg-[#001124]/50 text-white px-4 py-3 border rounded-none outline-none focus:border-[#b61a22] transition-colors ${errors.name ? 'border-red-500/50 bg-red-500/[0.02]' : 'border-white/10'}`}
                             />
                             {errors.name && <p className="text-red-400 text-[10px] mt-1 uppercase">{errors.name}</p>}
@@ -633,7 +650,7 @@ const MembersPage = () => {
                               type="text"
                               value={form.studentId}
                               onChange={e => setForm({ ...form, studentId: e.target.value })}
-                              placeholder="202610000"
+                              placeholder="0000332627"
                               className={`w-full bg-[#001124]/50 text-white px-4 py-3 border rounded-none outline-none focus:border-[#b61a22] transition-colors ${errors.studentId ? 'border-red-500/50 bg-red-500/[0.02]' : 'border-white/10'}`}
                             />
                             {errors.studentId && <p className="text-red-400 text-[10px] mt-1 uppercase">{errors.studentId}</p>}
