@@ -4,7 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 
 // Usamos alias o ruta relativa según tu configuración de Vite
 
-import background9 from "../../assets/backgrounds/Background_9.png";
+import background14 from "../../assets/backgrounds/Background_14.png";
+
 
 
 
@@ -122,10 +123,16 @@ const ProjectsPage = () => {
 
     <main className="relative min-h-screen w-full text-white">
       {/* Fondo que no se mueve y mantiene calidad */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${background9})` }}
-      />
+
+      <div className="absolute inset-0 z-0">
+        <img
+          src={background14}
+          alt="Background"
+          className="w-full h-full object-cover object-center"
+        />
+      </div>
+
+
 
       {/* AJUSTE DE FONDO: Reducida la opacidad de la superposición roja y el desenfoque para mayor nitidez */}
 

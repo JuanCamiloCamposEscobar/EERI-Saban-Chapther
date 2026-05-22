@@ -10,7 +10,7 @@ import { supabase } from '../../supabaseClient'
 import background5 from '../../assets/backgrounds/Background_5.png';
 
 // ── DATA CONSTANTS ──
-const MEMBERS = [
+export const MEMBERS = [
   {
     name: 'Dr. Diego Roberto Martinez',
     role: 'Faculty Advisor',
@@ -52,7 +52,7 @@ const MEMBERS = [
     quote: 'Optimizando recursos para viabilizar la investigación y el desarrollo.'
   },
   { name: 'Laura Artunduaga', role: 'Miembro Activo', semester: '4°', linkedin: '#', photo: '' },
-  { name: 'Angela Maria Opsino Julio', role: 'Miembro Activo', semester: '4°', linkedin: '#', photo: '' },
+  { name: 'Angela Maria Opsino Julio', role: 'Miembro Activo', semester: '3°', linkedin: '#', photo: '' },
   { name: 'Juan Felipe Arroyave', role: 'Miembro Activo', semester: '4°', linkedin: '#', photo: '' },
   { name: 'Juan Daniel Salcedo Urango', role: 'Miembro Activo', semester: '4°', linkedin: '#', photo: '' },
   { name: 'Pedro Nicolás Cortés Rojas', role: 'Miembro Activo', semester: 'Practicas', linkedin: '#', photo: '' },
@@ -65,17 +65,17 @@ const STATS = [
   { icon: '👥', value: 44, label: 'Estudiantes del Capítulo' },
   { icon: '🔬', value: 5, label: 'Investigaciones' },
   { icon: '🏢', value: 6, label: 'Comités Activos' },
-  { icon: '🌎', value: 8, label: 'Eventos Realizados' }
+  { icon: '🌎', value: 1, label: 'Eventos Realizados' }
 ];
 
 // Actualizado a los 6 comités requeridos con su metadata correspondiente
 const COMMITTEES = [
-  { id: 'EERI-INV', title: 'Comité de Investigación', desc: 'Enfocado en la simulación sísmica y análisis de vulnerabilidad estructural.', icon: Users, leader: 'Juan Camilo Buitrago', students: 12 },
+  { id: 'EERI-INV', title: 'Comité de Investigación', desc: 'Enfocado en la simulación sísmica y análisis de vulnerabilidad estructural.', icon: Users, leader: 'Juan Camilo Buitrago', students: 4 },
   { id: 'EERI-EVE', title: 'Comité de Eventos', desc: 'Organización de seminarios técnicos, visitas de campo y logística para el SDC.', icon: Calendar, leader: 'Mariana Rodríguez', students: 8 },
-  { id: 'EERI-COM', title: 'Comité de Comunicación', desc: 'Gestión de identidad visual, publicaciones académicas y difusión de actividades.', icon: Megaphone, leader: 'Andrés Felipe Mora', students: 6 },
-  { id: 'EERI-LOG', title: 'Comité de Logística', desc: 'Coordinación de materiales, espacios físicos y recursos técnicos para talleres.', icon: Wrench, leader: 'Laura Sofía Gómez', students: 5 },
+  { id: 'EERI-COM', title: 'Comité de Comunicación', desc: 'Gestión de identidad visual, publicaciones académicas y difusión de actividades.', icon: Megaphone, leader: 'Angela Maria Opsino Julio', students: 2 },
+  { id: 'EERI-AFI', title: 'Comité de Afiliaciones', desc: 'Coordinación de materiales, espacios físicos y recursos técnicos para talleres.', icon: Wrench, leader: 'Laura Sofía Gómez', students: 5 },
   { id: 'EERI-FON', title: 'Comité Fondos', desc: 'Supervisión de módulos de integridad, tutorías internas y capacitaciones.', icon: ShieldCheck, leader: 'Laura Artunduaga', students: 7 },
-  { id: 'EERI-SDC', title: 'Comité de SDC', desc: 'Vinculación con la industria, universidades y gestión de patrocinios.', icon: Award, leader: 'Angela Maria Opsino Julio', students: 4 }
+  { id: 'EERI-SDC', title: 'Comité de SDC', desc: 'Vinculación con la industria, universidades y gestión de patrocinios.', icon: Award, leader: 'Juan Camilo Campos', students: 8 }
 ];
 
 const ROLE_COLORS = {
@@ -299,7 +299,7 @@ const MembersPage = () => {
                     <img
                       src={facultyAdvisor.photo}
                       alt={facultyAdvisor.name}
-                      className="w-full h-full object-cover filter grayscale contrast-125 group-hover:grayscale-0 transition-all duration-300"
+                      className="w-full h-full object-cover object-top brightness-110 contrast-110 transition-all duration-300 md:grayscale md:group-hover:grayscale-0"
                       onError={(e) => { e.target.style.display = 'none'; }}
                     />
                   ) : (
@@ -354,7 +354,8 @@ const MembersPage = () => {
                       <img
                         src={member.photo}
                         alt={member.name}
-                        className="w-full h-full object-cover object-top filter grayscale contrast-125 group-hover:grayscale-0 transition-all duration-300"
+                        className="w-full h-full object-cover object-top brightness-110 contrast-110 transition-all duration-300 md:grayscale md:group-hover:grayscale-0"
+                        onError={(e) => { e.target.style.display = 'none'; }}
                       />
 
                     ) : (
@@ -518,7 +519,7 @@ const MembersPage = () => {
                       <img
                         src={member.photo}
                         alt={member.name}
-                        className="w-full h-full object-cover filter grayscale contrast-125 group-hover:grayscale-0 transition-all duration-300"
+                        className="w-full h-full object-cover object-top brightness-110 contrast-110 transition-all duration-300 md:grayscale md:group-hover:grayscale-0"
                         onError={(e) => { e.target.style.display = 'none'; }}
                       />
                     ) : (

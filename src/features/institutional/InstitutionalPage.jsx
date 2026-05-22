@@ -34,12 +34,18 @@ const itemVariants = {
   show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 80, damping: 14 } }
 };
 
-const BOARD = [
-  { name: 'Juan Camilo Buitrago', role: 'Presidente', initials: 'JC', photo: '/Members/Presidente.jpeg' },
-  { name: 'Juan Camilo Campos', role: 'Vicepresidente', initials: 'JC', photo: '/Members/vicepresidente.png' },
-  { name: 'Thomas Garcia', role: 'Secretario', initials: 'TG', photo: '' },
-  { name: 'Daniel Martinez', role: 'Tesorero', initials: 'DM', photo: '' },
-];
+// Subes dos niveles para salir de features/institutional y entrar a src/data
+import { MEMBERS as members } from "../members/MembersPage";
+
+const BOARD = members.filter(
+  (m) =>
+    m.role === 'Presidente' ||
+    m.role === 'Vicepresidente' ||
+    m.role === 'Secretario' ||
+    m.role === 'Tesorero' ||
+    m.role === 'Faculty Advisor'
+);
+
 
 const TimelinePoint = ({ year }) => {
   return (

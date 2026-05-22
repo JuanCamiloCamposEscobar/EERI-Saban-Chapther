@@ -88,8 +88,8 @@ const Navbar = () => {
                 to={item.path}
                 onMouseEnter={() => setHoveredPath(item.path)}
                 className={`relative isolate px-5 py-2 h-10 flex items-center font-mono text-[11px] font-bold uppercase tracking-wider transition-colors ${isHovered || isActive
-                    ? "text-white"
-                    : "text-white/50 hover:text-white"
+                  ? "text-white"
+                  : "text-white/50 hover:text-white"
                   }`}
               >
                 <span
