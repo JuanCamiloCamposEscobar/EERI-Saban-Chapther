@@ -19,11 +19,11 @@ const MOCK_EVENTS = [
     registered: 0,
     location: 'Fablab, Zona Árbol de Conexiones',
     requirements: ['Registro previo obligatorio', 'Puntualidad en la ceremonia'],
-    registrationLink: 'https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=MRalrP4ADUmRqxY--HJg7iN3eQWGHKNLl0RNgFTjwO…'
+    registrationLink: 'https://forms.cloud.microsoft/pages/responsepage.aspx?id=MRalrP4ADUmRqxY--HJg7iN3eQWGHKNLl0RNgFTjwOBUNVhaTzZEWEpJSk5ZU0U0UEFIOE5LOEVTWC4u&route=shorturl'
   },
   {
     id: '2',
-    title: 'Conf. 01: Edificio Atrio',
+    title: 'Conferencia 01: Edificio Atrio',
     version: '1.0.1-CONF',
     coordinates: 'COORD: 4.8616° N, 74.0334° W',
     anomaly: 'CONFERENCIA: Diseño Estructural',
@@ -38,7 +38,7 @@ const MOCK_EVENTS = [
   },
   {
     id: '3',
-    title: 'Conf. 02: Soldadura en Acero',
+    title: 'Conferencia 02: Soldadura en Acero',
     version: '1.0.2-CONF',
     coordinates: 'COORD: 4.8616° N, 74.0334° W',
     anomaly: 'CONFERENCIA: Resistencia Sísmica',
@@ -53,7 +53,7 @@ const MOCK_EVENTS = [
   },
   {
     id: '4',
-    title: 'Conf. 03: Puente Anchorage',
+    title: 'Conferecia 03: Puente Anchorage',
     version: '1.0.3-CONF',
     coordinates: 'COORD: 4.8616° N, 74.0334° W',
     anomaly: 'CONFERENCIA: Evaluación Sísmica',
@@ -96,6 +96,8 @@ const EventsPage = () => {
   const [error, setError] = useState(null);
   const [zoomedImage, setZoomedImage] = useState(null);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [currentEvent, setCurrentEvent] = useState(null);
 
   useEffect(() => {
     fetchEvents();
@@ -358,7 +360,7 @@ const EventsPage = () => {
                   </AnimatePresence>
 
                   {/* SECCIÓN DETALLES */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 |sm:gap-6">
 
                     {/* Tarjeta de Requisitos / Características */}
                     <div className="border border-white/10 bg-[#000d1a]/85 backdrop-blur-sm p-4 sm:p-5 space-y-4">
@@ -378,7 +380,9 @@ const EventsPage = () => {
                       </ul>
                     </div>
 
-                    {/* Módulos */}
+
+
+                    {/* Módulos del Sistema */}
                     <div className="border border-white/10 bg-[#000d1a]/85 backdrop-blur-sm p-4 sm:p-5 flex flex-col justify-between gap-4">
                       <div className="space-y-4">
                         <div className="flex items-center gap-2 border-b border-white/10 pb-2 text-white/90">
@@ -388,13 +392,13 @@ const EventsPage = () => {
 
                         <div className="space-y-1.5 font-mono text-[10px] uppercase">
                           <div className="flex justify-between">
-                            <span className="text-white/40">Capacidad de Registro</span>
+                            <span className="text-white/40">Estado de Cupos</span>
                             <span className="text-[#ff5540] font-bold">
-                              {selectedEvent.capacity - selectedEvent.registered} Cupos Disponibles
+                              {selectedEvent.registered} / {selectedEvent.capacity} REGISTRADOS
                             </span>
                           </div>
                           <div className="w-full bg-white/10 h-1.5 rounded-none overflow-hidden">
-                            <div
+                            <motion.div
                               className="h-full bg-[#ff5540] transition-all duration-500"
                               style={{ width: `${(selectedEvent.registered / selectedEvent.capacity) * 100}%` }}
                             />
@@ -403,7 +407,15 @@ const EventsPage = () => {
                       </div>
 
                       <button
-                        onClick={() => handleRegister(selectedEvent.id)}
+                        onClick={() => {
+                          // 1. Redirección inmediata (asegúrate de que registrationLink existe)
+                          if (selectedEvent.registrationLink) {
+                            window.open(selectedEvent.registrationLink, '_blank', 'noopener,noreferrer');
+                          }
+
+                          // 2. Abrir el modal de confirmación
+                          setShowModal(true);
+                        }}
                         disabled={selectedEvent.registered >= selectedEvent.capacity}
                         className={`w-full mt-2 py-3 font-mono text-xs font-bold uppercase tracking-widest transition-all duration-200 border rounded-none ${selectedEvent.registered >= selectedEvent.capacity
                           ? 'border-white/5 bg-transparent text-white/20 cursor-not-allowed'
@@ -412,11 +424,54 @@ const EventsPage = () => {
                       >
                         {selectedEvent.registered >= selectedEvent.capacity
                           ? 'ACCESO COMPLETO // BLOQUEADO'
-                          : 'SOLICITAR ACCESO // ASEGURAR CUPO'}
+                          : 'INSCRIBIRSE // ASEGURAR CUPO'}
                       </button>
                     </div>
-                  </div>
 
+                    {/* --- MODAL (Este bloque sustituye al anterior) --- */}
+                    {showModal && (
+                      <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+                        <div className="bg-[#001124] border border-[#a7c8ff] p-8 w-full max-w-sm text-center shadow-2xl">
+                          <h3 className="text-white font-bold uppercase mb-2">¿Completaste el registro?</h3>
+                          <p className="text-white/50 text-[10px] mb-6 font-mono uppercase">
+                            Si ya te inscribiste en el formulario externo, confirma para actualizar el contador.
+                          </p>
+
+                          <div className="flex flex-col gap-3">
+                            {/* Botón: SÍ */}
+                            <button
+                              onClick={() => {
+                                setEvents(prev => prev.map(ev =>
+                                  ev.id === selectedEvent.id ? { ...ev, registered: ev.registered + 1 } : ev
+                                ));
+                                setSelectedEvent(prev => ({ ...prev, registered: prev.registered + 1 }));
+                                setShowModal(false);
+                              }}
+                              className="bg-[#a7c8ff] text-[#001b3c] py-3 font-bold uppercase text-xs hover:bg-white transition-all"
+                            >
+                              SÍ, YA ME INSCRIBÍ
+                            </button>
+
+                            {/* Botón: NO, AÚN NO */}
+                            <button
+                              onClick={() => setShowModal(false)}
+                              className="bg-transparent border border-[#ff5540] text-[#ff5540] py-3 font-bold uppercase text-xs hover:bg-[#ff5540] hover:text-white transition-all"
+                            >
+                              NO, AÚN NO
+                            </button>
+
+                            {/* Botón: CERRAR */}
+                            <button
+                              onClick={() => setShowModal(false)}
+                              className="text-white/40 text-[9px] uppercase hover:text-white transition-all underline"
+                            >
+                              Cerrar ventana
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </motion.div>
               ) : (
                 <div className="h-full flex items-center justify-center text-white/20 font-mono text-xs tracking-widest uppercase">

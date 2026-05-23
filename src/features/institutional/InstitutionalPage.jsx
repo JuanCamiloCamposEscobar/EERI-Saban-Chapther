@@ -154,9 +154,49 @@ const Institutional = () => {
               className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105 mix-blend-luminosity group-hover:mix-blend-normal"
               onError={(e) => { e.target.src = "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=800"; }}
             />
-            <div className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-sm border border-white/10 px-3 py-1 text-[10px] text-white/60 tracking-wider font-medium uppercase">
-              Capítulo Estudiantil // Estructura SDC
-            </div>
+            <motion.div
+              initial={{ borderColor: "rgba(255, 255, 255, 0.1)", boxShadow: "0 0 5px rgba(255, 0, 0, 0.2)" }}
+              animate={{
+                // Brillo intenso en el borde
+                borderColor: ["rgba(255, 255, 255, 0.1)", "rgba(255, 100, 100, 1)", "rgba(255, 255, 255, 0.1)"],
+                // Brillo intenso exterior (más grande y más rojo)
+                boxShadow: [
+                  "0 0 10px rgba(255, 0, 0, 0.4)",
+                  "0 0 35px rgba(255, 0, 0, 1)", // <- ¡Mucho más fuerte aquí!
+                  "0 0 10px rgba(255, 0, 0, 0.4)"
+                ]
+              }}
+              transition={{
+                duration: 4, // Más lento
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-sm border px-3 py-1 text-[10px] text-white/80 tracking-wider font-medium uppercase"
+            >
+              <motion.span
+                className="inline-block relative text-transparent bg-clip-text bg-[length:200%_100%]"
+                style={{
+                  // Fondo más intenso para aumentar el brillo base
+                  backgroundImage: "linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255, 234, 0, 1) 50%, rgba(255,255,255,0.8) 100%)",
+                }}
+                animate={{
+                  backgroundPosition: ["-100% 0%", "200% 0%"],
+                  // Sombra masiva: 4 capas de luz que crean un aura de alta potencia
+                  textShadow: [
+                    "0 0 10px rgba(255, 234, 0, 0.9), 0 0 20px rgba(255, 234, 0, 0.7), 0 0 40px rgba(255, 234, 0, 0.5), 0 0 80px rgba(255, 234, 0, 0.3)",
+                    "0 0 20px rgba(255, 234, 0, 1), 0 0 40px rgba(255, 234, 0, 0.9), 0 0 80px rgba(255, 234, 0, 0.7), 0 0 120px rgba(255, 234, 0, 0.5)",
+                    "0 0 10px rgba(255, 234, 0, 0.9), 0 0 20px rgba(255, 234, 0, 0.7), 0 0 40px rgba(255, 234, 0, 0.5), 0 0 80px rgba(255, 234, 0, 0.3)"
+                  ]
+                }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+              >
+                Capítulo Estudiantil // Estructura SDC
+              </motion.span>
+            </motion.div>
           </motion.div>
         </section>
 
@@ -293,7 +333,7 @@ const Institutional = () => {
         </section>
 
       </div>
-    </motion.div>
+    </motion.div >
   );
 };
 
