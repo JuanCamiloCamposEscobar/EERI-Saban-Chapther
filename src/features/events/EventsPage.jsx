@@ -30,7 +30,7 @@ const MOCK_EVENTS = [
     description: 'Diseño estructural del edificio “Atrio”. Ponente: Ing. Gabriel Valencia Clement, Profesor universitario y gerente de TECMO S.A.',
     date: '2026-05-27',
     type: 'IN_PERSON',
-    image: '/Eventos/Precensial/InauguracionArbol.jpg', // Misma imagen del evento base
+    image: 'https://tecmo.com.co/wp-content/uploads/2020/10/1_1__EDIF__Atrio-1120357.png', // Misma imagen del evento base
     capacity: 50,
     registered: 0,
     location: 'Fablab, Salón Práctica Libre',

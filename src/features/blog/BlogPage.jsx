@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import ReactMarkdown from 'react-markdown';
+import ReactMarkdown from "react-markdown";
 import api from '../../utils/api';
 
 // 1. Importación exacta del background técnico institucional
@@ -10,15 +10,35 @@ import background11 from '../../assets/backgrounds/Background_11.png';
 const MOCK_POSTS = [
   {
     id: '1',
-    category: 'RESEARCH_PRIMARY',
-    tagLabel: 'ESTRUCTURAS SISMO-RESISTENTES',
-    title: 'Optimización de Amortiguadores de Masa para Estructuras de Madera',
-    excerpt:
-      'Análisis detallado sobre la implementación de sistemas de amortiguamiento pasivo en edificaciones de madera contralaminada (CLT). Este estudio explora la respuesta dinámica y la reducción de derivas de piso bajo acelerogramas históricos del cinturón circumpacífico.',
-    author: 'Juan Camilo Buitrago',
+    category: 'EVENTS',
+    tagLabel: 'ÁRBOL DE CONEXIONES',
+    title: 'Ceremonia de Inauguración del Árbol de Conexiones',
+    excerpt: 'Evento académico y conmemorativo que celebra la instalación del Árbol de Conexiones en la Universidad de La Sabana, destacando la colaboración entre la academia y la industria en el desarrollo de estructuras en acero.',
+    author: 'Capítulo EERI La Sabana',
     date: 'MAY 24, 2024',
-    image: 'https://th.bing.com/th/id/R.68baf82a86db6c757a74b504c1d41162?rik=eK1%2fkTfRjLq5vQ&pid=ImgRaw&r=0',
-    content: `## Introducción\n\nEl terremoto de Türkiye del 6 de febrero de 2023 (Mw 7.8) dejó más de 50 000 víctimas y miles de edificaciones colapsadas. En este artículo analizamos los principales mecanismos de falla y las implicaciones para la norma sísmica colombiana NSR-10.\n\n## Patrones de Daño Principales\n\n- **Piso blando (*soft story*)**: La mayoría de los edificios de altura media colapsaron en el primer piso, donde la planta baja era libre.\n- **Columna corta**: Columnas restringidas por muros de mampostería generaron cortantes altísimos.\n- **Edificios adyacentes (pounding)**: Colisión entre estructuras con diferentes periodos fundamentales.\n\n## Recomendaciones para Colombia\n\nDada la alta amenaza sísmica en zonas como el Eje Cafetero, el Pacífico y los Santanderes, se sugiere revisar los requisitos de la NSR-10 en cuanto a ductilidad de juntas y revisión de sistemas de piso blando en edificaciones existentes.\n\n## Conclusión\n\nLos eventos catastróficos son oportunidades de aprendizaje. El capítulo EERI La Sabana está comprometido con la difusión de este conocimiento en la comunidad universitaria.`,
+    image: '/group-photo.jpg',
+    content: `## Introducción
+La ceremonia de inauguración del Árbol de Conexiones representa un hito para la Universidad de La Sabana, al materializar la colaboración entre el sector académico y la industria del acero. Este proyecto, posible gracias al apoyo de TECMO S.A. y el Instituto Colombiano de Construcción en Acero, simboliza la integración entre conocimiento técnico y aplicación práctica.
+
+## Desarrollo del Evento
+
+El evento inició con una bienvenida institucional en la que se destacó la importancia de la donación de la estructura del Árbol de Conexiones como herramienta pedagógica para la formación en ingeniería estructural.
+
+Durante la jornada, se llevaron a cabo diversas conferencias técnicas enfocadas en el diseño estructural, la soldadura aplicada a sistemas de resistencia sísmica y la evaluación de infraestructuras reales. Entre los momentos destacados se incluyen:
+
+- **Diseño estructural del edificio "Atrio"** – Presentado por el Ing. Gabriel Valencia Clement.
+- **Soldadura para sistemas de resistencia sísmica en acero** – Expuesto por el Ing. Luis Enrique Rodríguez.
+- **Evaluación sísmica del puente de acceso a Anchorage, Alaska** – A cargo del Ing. Diego Roberto Martínez.
+
+Asimismo, se dispuso de un espacio de interacción académica durante el receso, promoviendo el intercambio de ideas entre estudiantes, docentes y profesionales.
+
+## Ceremonia de Inauguración
+
+El acto central consistió en la inauguración oficial del Árbol de Conexiones, una estructura que permite visualizar y comprender distintos tipos de uniones en acero utilizadas en la ingeniería moderna. Este elemento servirá como laboratorio abierto para estudiantes y como referencia física para el estudio de conexiones estructurales.
+
+Los conferencistas invitados cuentan con una destacada trayectoria en el ámbito de la ingeniería civil y estructural, con experiencia en diseño, investigación y desarrollo normativo en Colombia y el exterior. Su participación enriqueció el evento al aportar tanto conocimientos teóricos como experiencias prácticas.
+
+La inauguración del Árbol de Conexiones refuerza el compromiso de la Universidad de La Sabana con la excelencia académica y la formación integral de sus estudiantes. Este tipo de iniciativas fomentan la conexión entre teoría y práctica, consolidando espacios de aprendizaje innovadores para las futuras generaciones de ingenieros.`,
   },
   {
     id: '2',
@@ -172,10 +192,24 @@ const BlogPage = () => {
                     <p>FECHA DEL REPORTE: <span className="text-[#fd6e59] font-bold">{selectedPost.date}</span></p>
                   </div>
 
-                  <div className="prose prose-invert max-w-none font-['Hanken_Grotesk'] text-[#e0e3e6] space-y-4
-                    prose-headings:font-['Montserrat'] prose-headings:text-white prose-headings:font-bold
-                    prose-h2:text-lg prose-h2:border-b prose-h2:border-[#2D3748] prose-h2:pb-2 prose-h2:mt-8
-                    prose-ul:list-disc prose-ul:pl-6 prose-strong:text-[#fd6e59] prose-p:leading-relaxed">
+                  <div className="prose prose-invert max-w-none 
+                    font-['Hanken_Grotesk'] text-[#e0e3e6] 
+                    space-y-6 
+                    prose-headings:font-['Montserrat'] 
+                    prose-headings:text-white 
+                    prose-headings:font-bold 
+                    prose-h2:text-xl 
+                    prose-h2:border-b 
+                    prose-h2:border-[#2D3748] 
+                    prose-h2:pb-3 
+                    prose-h2:mt-10
+                    prose-ul:list-disc 
+                    prose-ul:pl-6 
+                    prose-li:marker:text-[#ab3424] 
+                    prose-strong:text-[#fd6e59] 
+                    prose-p:leading-relaxed 
+                    prose-p:text-sm">
+
                     <ReactMarkdown>{selectedPost.content}</ReactMarkdown>
                   </div>
                 </div>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Users, Calendar, Megaphone, ShieldCheck, Wrench, Award } from 'lucide-react';
-
+import { COMMITTEES } from "../../data/committees";
 
 // Importación centralizada de la instancia de Supabase
 import { supabase } from '../../supabaseClient'
@@ -15,8 +14,8 @@ export const MEMBERS = [
     name: 'Dr. Diego Roberto Martinez',
     role: 'Faculty Advisor',
     semester: 'Profesor Principal',
-    linkedin: '#',
-    photo: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDamk7adwHjLdcm-Mfy1K1eocMMrqOkSeI-9Vu18BHM1cA0YFYS6-FBKj-QhN6SsTXaAZA9-uXiTOd6-6tYoUtDTt-IUF_g53qI20OHV2tCbjmKMIDVFe7whqJkjO22cd7gVA9sC5A31ohkLCj3EcrjXv5WJlOZGOerzjQ6Se0aSIC44zQ6qY5QSiL5PTNc9bj5VGYQ-lXQLgLutFLTTc61M9qKW3pj1_K5soZ59_50AdcElL5D_4_6SAxDSAD8yi-1caIwGxceEgzx',
+    linkedin: 'https://www.linkedin.com/in/diego-martinez-pineda?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+    photo: '/Members/Profesor.jpeg',
     quote: 'Guíando a la próxima generación de ingenieros hacia la resiliencia estructural.'
   },
   {
@@ -46,18 +45,18 @@ export const MEMBERS = [
   {
     name: 'Daniel Alejandro Parra Guerrero',
     role: 'Tesorero',
-    semester: '9°',
-    linkedin: '#',
-    photo: '',
+    semester: '8°',
+    linkedin: 'https://www.linkedin.com/in/daniel-alejandro-parra-guerrero?utm_source=share_via&utm_content=profile&utm_medium=member_ios',
+    photo: '/Members/Tesorero.jpeg',
     quote: 'Optimizando recursos para viabilizar la investigación y el desarrollo.'
   },
-  { name: 'Laura Artunduaga', role: 'Miembro Activo', semester: '4°', linkedin: '#', photo: '' },
-  { name: 'Angela Maria Opsino Julio', role: 'Miembro Activo', semester: '3°', linkedin: '#', photo: '' },
+  { name: 'Laura Artunduaga', role: 'Miembro Activo', semester: '4°', linkedin: 'https://www.linkedin.com/in/laura-artunduaga-7120b3358?utm_source=share_via&utm_content=profile&utm_medium=member_ios', photo: '/Members/LauraA.jpeg' },
+  { name: 'Angela Maria Opsino Julio', role: 'Miembro Activo', semester: '3°', linkedin: '#', photo: '/Members/Angela.jpeg' },
   { name: 'Juan Felipe Arroyave', role: 'Miembro Activo', semester: '4°', linkedin: '#', photo: '' },
   { name: 'Juan Daniel Salcedo Urango', role: 'Miembro Activo', semester: '4°', linkedin: '#', photo: '' },
   { name: 'Pedro Nicolás Cortés Rojas', role: 'Miembro Activo', semester: 'Practicas', linkedin: '#', photo: '' },
   { name: 'Germán Darío Hernández Mora ', role: 'Miembro Activo', semester: 'Practicas', linkedin: '#', photo: '' },
-  { name: 'Laura Jiménez', role: 'Miembro Activo', semester: '4°', linkedin: '#', photo: '' },
+  { name: 'Nicolas R. Bilbao Cure', role: 'Miembro Activo', semester: '9°', linkedin: 'https://www.linkedin.com/in/nicolas-r-bilbao-cure-26b58330b?utm_source=share_via&utm_content=profile&utm_medium=member_android', photo: '/Members/NicolasB.jpeg' },
   { name: 'Miguel Ángel Ruiz', role: 'Miembro Activo', semester: '7°', linkedin: '#', photo: '' },
 ];
 
@@ -69,14 +68,28 @@ const STATS = [
 ];
 
 // Actualizado a los 6 comités requeridos con su metadata correspondiente
-const COMMITTEES = [
-  { id: 'EERI-INV', title: 'Comité de Investigación', desc: 'Enfocado en la simulación sísmica y análisis de vulnerabilidad estructural.', icon: Users, leader: 'Juan Camilo Buitrago', students: 4 },
-  { id: 'EERI-EVE', title: 'Comité de Eventos', desc: 'Organización de seminarios técnicos, visitas de campo y logística para el SDC.', icon: Calendar, leader: 'Mariana Rodríguez', students: 8 },
-  { id: 'EERI-COM', title: 'Comité de Comunicación', desc: 'Gestión de identidad visual, publicaciones académicas y difusión de actividades.', icon: Megaphone, leader: 'Angela Maria Opsino Julio', students: 2 },
-  { id: 'EERI-AFI', title: 'Comité de Afiliaciones', desc: 'Coordinación de materiales, espacios físicos y recursos técnicos para talleres.', icon: Wrench, leader: 'Laura Sofía Gómez', students: 5 },
-  { id: 'EERI-FON', title: 'Comité Fondos', desc: 'Supervisión de módulos de integridad, tutorías internas y capacitaciones.', icon: ShieldCheck, leader: 'Laura Artunduaga', students: 7 },
-  { id: 'EERI-SDC', title: 'Comité de SDC', desc: 'Vinculación con la industria, universidades y gestión de patrocinios.', icon: Award, leader: 'Juan Camilo Campos', students: 8 }
-];
+const CommitteeSection = () => {
+  return (
+    <section>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {COMMITTEES.map((comite) => {
+          const Icon = comite.icon;
+          return (
+            <div key={comite.id} className="p-6 border rounded-lg shadow-sm hover:shadow-md transition">
+              <Icon className="w-8 h-8 text-[#ab3424] mb-4" />
+              <h2 className="text-xl font-semibold mb-2">{comite.title}</h2>
+              <p className="text-gray-600 mb-4">{comite.desc}</p>
+              <div className="text-sm font-medium">
+                <p>Líder: {comite.leader}</p>
+                <p>Estudiantes: {comite.students}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
+};
 
 const ROLE_COLORS = {
   'Faculty Advisor': 'bg-blue-500/10 text-blue-400 border border-blue-400/40 font-bold',
@@ -312,6 +325,19 @@ const MembersPage = () => {
                 <h4 className="font-bold text-lg tracking-wide mb-2 text-white">
                   {facultyAdvisor.name}
                 </h4>
+
+                {/* LinkedIn Asesor de facultad */}
+
+                {facultyAdvisor.linkedin && facultyAdvisor.linkedin !== '#' && (
+                  <a
+                    href={facultyAdvisor.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mb-2 text-[10px] font-mono font-bold text-blue-400 hover:text-white underline uppercase transition-all"
+                  >
+                    Ver LinkedIn
+                  </a>
+                )}
                 <span className={`px-3 py-1 text-[9px] font-mono font-bold uppercase tracking-widest rounded-sm mb-3 ${ROLE_COLORS[facultyAdvisor.role]}`}>
                   {facultyAdvisor.role}
                 </span>
@@ -347,17 +373,15 @@ const MembersPage = () => {
                     DIR-{String(i + 1).padStart(3, '0')}
                   </span>
 
-                  {/* Contenedor de Foto - AQUÍ ESTÁ EL CENTRADO */}
+                  {/* Contenedor de Foto */}
                   <div className="w-24 h-28 mb-4 border border-blue-500/20 group-hover:border-blue-400 transition-all rounded-sm overflow-hidden bg-black/40 flex items-center justify-center relative">
                     {member.photo ? (
-
                       <img
                         src={member.photo}
                         alt={member.name}
                         className="w-full h-full object-cover object-top brightness-110 contrast-110 transition-all duration-300 md:grayscale md:group-hover:grayscale-0"
                         onError={(e) => { e.target.style.display = 'none'; }}
                       />
-
                     ) : (
                       <span className="font-mono font-bold text-lg text-blue-400/60">
                         {member.name.split(' ').map(w => w[0]).slice(0, 2).join('')}
@@ -365,12 +389,15 @@ const MembersPage = () => {
                     )}
                   </div>
 
-                  {/* Información siempre visible */}
+                  {/* Información */}
                   <h4 className="font-bold text-md tracking-wide mb-2 text-white/95">
                     {member.name}
                   </h4>
 
-                  {/* Lógica del Botón de LinkedIn */}
+                  {/* LinkedIn */}
+
+                  {/* Junta directiva */}
+
                   {member.linkedin && member.linkedin !== '#' && (
                     <a
                       href={member.linkedin}
@@ -380,7 +407,9 @@ const MembersPage = () => {
                     >
                       Ver LinkedIn
                     </a>
+
                   )}
+
 
                   <span className={`px-2.5 py-0.5 text-[9px] font-mono font-bold uppercase tracking-widest rounded-sm mb-3 ${ROLE_COLORS[member.role]}`}>
                     {member.role}
@@ -528,6 +557,19 @@ const MembersPage = () => {
                       </span>
                     )}
                   </div>
+
+                  {/* Miembors activos Linked In */}
+
+                  {member.linkedin && member.linkedin !== '#' && (
+                    <a
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mb-2 text-[10px] font-mono font-bold text-red-400 hover:text-yellow-300 underline uppercase transition-all"
+                    >
+                      Ver LinkedIn
+                    </a>
+                  )}
 
                   <h4 className="font-bold text-sm tracking-wide mb-2 text-white/90 min-h-[40px] flex items-center justify-center">
                     {member.name}

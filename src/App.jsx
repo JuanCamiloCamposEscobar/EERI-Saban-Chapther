@@ -23,6 +23,7 @@ import BlogPage from './features/blog/BlogPage';
 import ProjectsPage from './features/projects/ProjectsPage';
 import MembersPage from './features/members/MembersPage';
 import DonationsPage from './features/donations/DonationsPage';
+import { COMMITTEES } from "./data/committees";
 
 import logoCapitulo from './assets/logos/eeri.png';
 import imgHero from './assets/logos/eeri.png';
@@ -207,53 +208,48 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 border border-white/10 divide-y md:divide-y-0 md:divide-x divide-white/10 bg-[#00152b]/50 backdrop-blur-sm">
-            {/* Comité de Investigación */}
-            <div className="p-8 space-y-6 text-left hover:bg-[#00254d]/40 transition-colors duration-300">
-              <div className="flex justify-between items-center">
-                <span className="text-2xl bg-[#ab3424]/10 p-2 rounded border border-[#ab3424]/20 select-none">⚙️</span>
-                <span className="font-mono text-[10px] bg-white/5 px-2 py-0.5 text-white/50 font-bold">EERI-INV</span>
-              </div>
-              <h3 className="text-xl font-[Montserrat] font-bold tracking-tight uppercase">Comité de Investigación</h3>
-              <p className="text-sm text-slate-300 font-[Hanken-Grotesk] leading-relaxed font-light min-h-[60px]">
-                Enfocado en la simulación sísmica y análisis de vulnerabilidad estructural en edificaciones históricas.
-              </p>
-              <div className="pt-4 border-t border-white/5 space-y-1 text-xs font-mono text-slate-400">
-                <div className="flex justify-between"><span>LÍDER DEL COMITÉ</span> <span className="text-white font-semibold">Juan Camilo Campos</span></div>
-                <div className="flex justify-between"><span>ESTUDIANTES ACTIVOS</span> <span className="text-[#fd6e59] font-semibold">12 Estudiantes</span></div>
-              </div>
-            </div>
+            {COMMITTEES && COMMITTEES.slice(0, 3).map((comite) => {
+              // 1. Tratamiento del icono por si viene como componente u objeto
+              const IconComponent = typeof comite.icon === 'object' ? comite.icon : null;
 
-            {/* Comité de Eventos */}
-            <div className="p-8 space-y-6 text-left hover:bg-[#00254d]/40 transition-colors duration-300">
-              <div className="flex justify-between items-center">
-                <span className="text-2xl bg-[#ab3424]/10 p-2 rounded border border-[#ab3424]/20 select-none">📅</span>
-                <span className="font-mono text-[10px] bg-white/5 px-2 py-0.5 text-white/50 font-bold">EERI-EVE</span>
-              </div>
-              <h3 className="text-xl font-[Montserrat] font-bold tracking-tight uppercase">Comité de Eventos</h3>
-              <p className="text-sm text-slate-300 font-[Hanken-Grotesk] leading-relaxed font-light min-h-[60px]">
-                Organización de seminarios técnicos, visitas de campo y la logística para el SDC anual.
-              </p>
-              <div className="pt-4 border-t border-white/5 space-y-1 text-xs font-mono text-slate-400">
-                <div className="flex justify-between"><span>LÍDER DEL COMITÉ</span> <span className="text-white font-semibold">Mariana Rodríguez</span></div>
-                <div className="flex justify-between"><span>ESTUDIANTES ACTIVOS</span> <span className="text-[#fd6e59] font-semibold">8 Estudiantes</span></div>
-              </div>
-            </div>
+              // 2. Corregir número de estudiantes buscando variantes comunes en tu objeto
+              const cantidadEstudiantes = comite.activeStudents || comite.studentsCount || comite.membersCount || 0;
 
-            {/* Comité de Comunicación */}
-            <div className="p-8 space-y-6 text-left hover:bg-[#00254d]/40 transition-colors duration-300">
-              <div className="flex justify-between items-center">
-                <span className="text-2xl bg-[#ab3424]/10 p-2 rounded border border-[#ab3424]/20 select-none">📢</span>
-                <span className="font-mono text-[10px] bg-white/5 px-2 py-0.5 text-white/50 font-bold">EERI-COM</span>
-              </div>
-              <h3 className="text-xl font-[Montserrat] font-bold tracking-tight uppercase">Comité de Comunicación</h3>
-              <p className="text-sm text-slate-300 font-[Hanken-Grotesk] leading-relaxed font-light min-h-[60px]">
-                Gestión de identidad visual, publicaciones académicas en el blog y difusión de actividades del capítulo.
-              </p>
-              <div className="pt-4 border-t border-white/5 space-y-1 text-xs font-mono text-slate-400">
-                <div className="flex justify-between"><span>LÍDER DEL COMITÉ</span> <span className="text-white font-semibold">Andrés Felipe Mora</span></div>
-                <div className="flex justify-between"><span>ESTUDIANTES ACTIVOS</span> <span className="text-[#fd6e59] font-semibold">6 Estudiantes</span></div>
-              </div>
-            </div>
+              return (
+                <div
+                  key={comite.id}
+                  className="p-8 space-y-6 text-left hover:bg-[#00254d]/40 transition-colors duration-300"
+                >
+                  <div className="flex justify-between items-center">
+                    <span className="text-2xl bg-[#ab3424]/10 p-2 rounded border border-[#ab3424]/20 select-none flex items-center justify-center">
+                      {IconComponent ? <IconComponent className="w-6 h-6" /> : comite.icon || "⚙️"}
+                    </span>
+                    <span className="font-mono text-[10px] bg-white/5 px-2 py-0.5 text-white/50 font-bold">
+                      {comite.code || "EERI"}
+                    </span>
+                  </div>
+
+                  <h3 className="text-xl font-[Montserrat] font-bold tracking-tight uppercase">
+                    {comite.title}
+                  </h3>
+
+                  <p className="text-sm text-slate-300 font-[Hanken-Grotesk] leading-relaxed font-light min-h-[60px]">
+                    {comite.description}
+                  </p>
+
+                  <div className="pt-4 border-t border-white/5 space-y-1 text-xs font-mono text-slate-400">
+                    <div className="flex justify-between">
+                      <span>LÍDER DEL COMITÉ</span>
+                      <span className="text-white font-semibold">{comite.leader || "Por asignar"}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>ESTUDIANTES ACTIVOS</span>
+                      <span className="text-[#fd6e59] font-semibold">{cantidadEstudiantes} Estudiantes</span>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
 
           {/* Estadísticas del Capítulo */}

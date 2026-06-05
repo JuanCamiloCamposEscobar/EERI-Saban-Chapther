@@ -183,9 +183,9 @@ const Institutional = () => {
                   backgroundPosition: ["-100% 0%", "200% 0%"],
                   // Sombra masiva: 4 capas de luz que crean un aura de alta potencia
                   textShadow: [
-                    "0 0 10px rgba(255, 234, 0, 0.9), 0 0 20px rgba(255, 234, 0, 0.7), 0 0 40px rgba(255, 234, 0, 0.5), 0 0 80px rgba(255, 234, 0, 0.3)",
-                    "0 0 20px rgba(255, 234, 0, 1), 0 0 40px rgba(255, 234, 0, 0.9), 0 0 80px rgba(255, 234, 0, 0.7), 0 0 120px rgba(255, 234, 0, 0.5)",
-                    "0 0 10px rgba(255, 234, 0, 0.9), 0 0 20px rgba(255, 234, 0, 0.7), 0 0 40px rgba(255, 234, 0, 0.5), 0 0 80px rgba(255, 234, 0, 0.3)"
+                    "0 0 10px rgba(255, 234, 0, 0.9), 0 0 20px rgba(255, 234, 0, 0.7), 0 0 40px rgba(255, 234, 0, 0.5), 0 0 80px rgba(29, 27, 1, 0.52)",
+                    "0 0 20px rgba(255, 234, 0, 1), 0 0 40px rgba(255, 234, 0, 0.9), 0 0 80px rgba(255, 234, 0, 0.7), 0 0 120px rgba(29, 27, 1, 0.52)",
+                    "0 0 10px rgba(255, 234, 0, 0.9), 0 0 20px rgba(255, 234, 0, 0.7), 0 0 40px rgba(255, 234, 0, 0.5), 0 0 80px rgba(29, 27, 1, 0.52)"
                   ]
                 }}
                 transition={{
@@ -194,7 +194,7 @@ const Institutional = () => {
                   ease: "linear"
                 }}
               >
-                Capítulo Estudiantil // Estructura SDC
+                Capítulo Estudiantil // Árbol Metálico
               </motion.span>
             </motion.div>
           </motion.div>
@@ -309,8 +309,8 @@ const Institutional = () => {
             >
               {[
                 { year: '2025', title: 'Participación SDC 2025', desc: 'Competencia internacional de diseño sísmico de estructuras de madera balsa en Seattle, EE.UU.' },
-                { year: '2024', title: 'I Simposio de Ingeniería Sísmica', desc: 'Encuentro académico regional con la participación de conferencistas magistrales y delegaciones de 5 universidades del país.' },
-                { year: '2023', title: 'Fundación del Capítulo', desc: 'Reconocimiento oficial y constitución legal de la mesa directiva avalada formalmente por el EERI International.' },
+
+                { year: '2024', title: 'Fundación del Capítulo', desc: 'Reconocimiento oficial y constitución legal de la mesa directiva avalada formalmente por el EERI International.' },
               ].map((item, i) => (
                 <motion.div key={i} variants={itemVariants} className="relative w-full flex items-start">
                   <TimelinePoint year={item.year} />
