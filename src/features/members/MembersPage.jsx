@@ -19,7 +19,7 @@ export const MEMBERS = [
     quote: 'Guíando a la próxima generación de ingenieros hacia la resiliencia estructural.'
   },
   {
-    name: 'Juan Camilo Buitrago',
+    name: 'Juan Camilo Buitrago Hurtado',
     role: 'Presidente',
     semester: '8°',
     linkedin: 'https://www.linkedin.com/in/juan-camilo-buitrago-hurtado',
@@ -27,7 +27,7 @@ export const MEMBERS = [
     quote: 'Liderando la innovación sismorresistente desde la academia.'
   },
   {
-    name: 'Juan Camilo Campos',
+    name: 'Juan Camilo Campos Escobar',
     role: 'Vicepresidente',
     semester: '4°',
     linkedin: 'https://www.linkedin.com/in/juan-camilo-campos-escobar-a6a3533b5?utm_source=share_via&utm_content=profile&utm_medium=member_android',
@@ -50,16 +50,59 @@ export const MEMBERS = [
     photo: '/Members/Tesorero.jpeg',
     quote: 'Optimizando recursos para viabilizar la investigación y el desarrollo.'
   },
-  { name: 'Laura Artunduaga', role: 'Miembro Activo', semester: '4°', linkedin: 'https://www.linkedin.com/in/laura-artunduaga-7120b3358?utm_source=share_via&utm_content=profile&utm_medium=member_ios', photo: '/Members/LauraA.jpeg' },
-  { name: 'Angela Maria Opsino Julio', role: 'Miembro Activo', semester: '3°', linkedin: '#', photo: '/Members/Angela.jpeg' },
-  { name: 'Juan Felipe Arroyave', role: 'Miembro Activo', semester: '4°', linkedin: '#', photo: '' },
+  { name: 'Laura Sofia Artunduaga Pulido', role: 'Miembro Activo', semester: '4°', linkedin: 'https://www.linkedin.com/in/laura-artunduaga-7120b3358?utm_source=share_via&utm_content=profile&utm_medium=member_ios', photo: '/Members/LauraA.jpeg' },
+  { name: 'Angela Maria Ospino Julio', role: 'Miembro Activo', semester: '3°', linkedin: '#', photo: '/Members/Angela.jpeg' },
+  { name: 'Juan Felipe Arroyave Calvo', role: 'Miembro Activo', semester: '4°', linkedin: '#', photo: '' },
   { name: 'Juan Daniel Salcedo Urango', role: 'Miembro Activo', semester: '4°', linkedin: '#', photo: '' },
   { name: 'Pedro Nicolás Cortés Rojas', role: 'Miembro Activo', semester: 'Practicas', linkedin: '#', photo: '' },
   { name: 'Germán Darío Hernández Mora ', role: 'Miembro Activo', semester: 'Practicas', linkedin: '#', photo: '' },
-  { name: 'Nicolas R. Bilbao Cure', role: 'Miembro Activo', semester: '9°', linkedin: 'https://www.linkedin.com/in/nicolas-r-bilbao-cure-26b58330b?utm_source=share_via&utm_content=profile&utm_medium=member_android', photo: '/Members/NicolasB.jpeg' },
-  { name: 'Miguel Ángel Ruiz', role: 'Miembro Activo', semester: '7°', linkedin: '#', photo: '' },
+  { name: 'Nicolas Rafael Bilbao Cure', role: 'Miembro Activo', semester: '9°', linkedin: 'https://www.linkedin.com/in/nicolas-r-bilbao-cure-26b58330b?utm_source=share_via&utm_content=profile&utm_medium=member_android', photo: '/Members/NicolasB.jpeg' },
+  { name: 'Brayan Stiven Trujillo Guayara', role: 'Miembro Activo', semester: '7°', linkedin: '#', photo: '' },
 ];
 
+// ── DATA CONSTANTS FOR FOUNDERS ──
+const FOUNDERS = [
+  {
+    name: 'Juan Camilo Buitrago Hurtado',
+    role: 'Presidente Fundador',
+    period: '2024 - 2025',
+    contribution: 'Gestión inicial y establecimiento de las bases del capítulo académico.',
+    linkedin: 'https://www.linkedin.com/in/juan-camilo-buitrago-hurtado',
+    photo: '/Members/Founders/Buitrago.jpeg'
+  },
+  {
+    name: 'Juan Camilo Campos Escobar',
+    role: 'Vicepresidente Fundador',
+    period: '2024 - 2025',
+    contribution: 'Co-líder en el desarrollo estratégico, estructuración de comités y creador de la pagina web.',
+    linkedin: 'https://www.linkedin.com/in/juan-camilo-campos-escobar-a6a3533b5?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+    photo: '/Members/Founders/Campos.png'
+  },
+  {
+    name: 'Dr. Diego Roberto Martinez',
+    role: 'Promotor & Faculty Advisor',
+    period: 'Fundación',
+    contribution: 'Soporte institucional, académico y mentoría esencial para la validación del capítulo.',
+    linkedin: 'https://www.linkedin.com/in/diego-martinez-pineda',
+    photo: '/Members/Founders/Profesor.jpeg'
+  },
+  {
+    name: 'Thomas Alejandro Leon Garcia',
+    role: 'Secretario',
+    period: '2024 - 2025',
+    contribution: 'Estructurando la documentación y el rigor técnico del capítulo.',
+    linkedin: '#',
+    photo: '',
+  },
+  {
+    name: 'Daniel Alejandro Parra Guerrero',
+    role: 'Tesorero',
+    period: '2024 - 2025',
+    contribution: 'Optimizando recursos para viabilizar la investigación y el desarrollo.',
+    linkedin: 'https://www.linkedin.com/in/daniel-alejandro-parra-guerrero?utm_source=share_via&utm_content=profile&utm_medium=member_ios',
+    photo: '/Members/Founders/Parra.jpeg'
+  }
+];
 const STATS = [
   { icon: '👥', value: 44, label: 'Estudiantes del Capítulo' },
   { icon: '🔬', value: 5, label: 'Investigaciones' },
@@ -587,6 +630,107 @@ const MembersPage = () => {
           </div>
         </section>
 
+        {/* ========================================================================= */}
+        {/* ── SECTION: MESA DIRECTIVA FUNDADORA (ACCENT AMARILLO/DORADO) ── */}
+        {/* ========================================================================= */}
+        <section className="mb-32 relative">
+          <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-40 h-[1px] bg-gradient-to-r from-transparent via-amber-500 to-transparent"></div>
+
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-[Montserrat] font-black tracking-widest text-amber-400 uppercase drop-shadow-[0_0_15px_rgba(245,158,11,0.3)]">
+              Mesa Directiva Fundadora
+            </h2>
+            <p className="text-xs font-mono text-amber-500/70 tracking-widest uppercase mt-2">
+          // LOS PRIMEROS INTEGRANTES QUE DIERON ORIGEN AL CAPÍTULO
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 max-w-6xl mx-auto">
+            {FOUNDERS.map((founder, idx) => {
+              const obtenerIniciales = (name) => {
+                if (!name) return "EERI";
+                const nombreLimpio = name.replace(/^(Dr\.|Ing\.|Prof\.)\s+/i, '');
+                const palabras = nombreLimpio.trim().split(/\s+/);
+                if (palabras.length === 1) return palabras[0].substring(0, 2).toUpperCase();
+
+                const primeraLetra = palabras[0][0];
+                const segundaLetra = palabras.length > 2 ? palabras[2][0] : palabras[1][0];
+                return (primeraLetra + segundaLetra).toUpperCase();
+              };
+
+              const [imageError, setImageError] = useState(false);
+
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.6, delay: idx * 0.15, ease: "easeOut" }}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  className="group relative bg-gradient-to-b from-[#001c3a]/90 to-[#000e20]/95 border border-amber-500/30 rounded-lg p-6 flex flex-col items-center text-center overflow-hidden transition-all duration-300 hover:border-amber-400 hover:shadow-[0_0_30px_rgba(245,158,11,0.15)]"
+                >
+                  <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-amber-400 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity"></div>
+
+                  {/* Contenedor de la Foto Rectangular Totalmente Centrado (`mx-auto`) */}
+                  <div className="relative w-44 h-48 mb-6 mx-auto rounded-md p-1 bg-gradient-to-tr from-amber-600 via-transparent to-amber-400 shadow-inner transition-transform duration-500">
+                    <div className="w-full h-full rounded-md overflow-hidden bg-[#000e20] border border-amber-500/20 flex items-center justify-center">
+
+                      {!imageError ? (
+                        <img
+                          src={founder.photo}
+                          alt={founder.name}
+                          // filter-none (Móvil: color total) | md:filter md:grayscale (PC: Gris inicial) | md:group-hover:grayscale-0 (PC: Color en Hover)
+                          className="w-full h-full object-cover object-center filter-none md:filter md:grayscale md:group-hover:grayscale-0 transition-all duration-500 scale-100 group-hover:scale-105"
+                          onError={() => setImageError(true)}
+                        />
+                      ) : (
+                        // Estado Alternativo Centrado Matemáticamente en caso de que falle la carga de la foto
+                        <div className="w-full h-full bg-gradient-to-br from-[#001833] to-[#000a14] flex items-center justify-center font-[Montserrat] font-black text-3xl tracking-wider text-amber-400 select-none animate-fade-in group-hover:text-amber-300">
+                          {obtenerIniciales(founder.name)}
+                        </div>
+                      )}
+
+                    </div>
+                    {/* Insignia del período perfectamente acoplada a la esquina inferior derecha del rectángulo */}
+                    <span className="absolute -bottom-1 -right-1 bg-amber-500 text-[#000a14] font-mono font-black text-[9px] px-2 py-0.5 rounded-sm border border-[#000a14]">
+                      {founder.period}
+                    </span>
+                  </div>
+
+                  {/* Información */}
+                  <h3 className="text-lg font-[Montserrat] font-bold text-white tracking-wide group-hover:text-amber-300 transition-colors">
+                    {founder.name}
+                  </h3>
+
+                  <span className="inline-block text-xs font-mono font-bold text-amber-400 bg-amber-500/10 border border-amber-500/20 px-3 py-1 rounded-sm uppercase tracking-wider my-2">
+                    {founder.role}
+                  </span>
+
+                  <p className="text-xs text-slate-400 font-[Hanken-Grotesk] leading-relaxed mt-2 flex-grow min-h-[45px]">
+                    {founder.contribution}
+                  </p>
+
+                  {/* Enlace de Red Social */}
+                  {founder.linkedin && founder.linkedin !== '#' && (
+                    <a
+                      href={founder.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 flex items-center justify-center w-8 h-8 rounded-full border border-amber-500/30 text-amber-500/70 hover:text-amber-400 hover:border-amber-400 hover:bg-amber-500/10 transition-all duration-300"
+                      title="Ver Perfil Profesional"
+                    >
+                      <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+                      </svg>
+                    </a>
+                  )}
+                </motion.div>
+              );
+            })}
+          </div>
+        </section>
+
         {/* ── SECCIÓN DE INSCRIPCIÓN MULTIPASO ── */}
         <section id="recruitment-section" className="scroll-mt-24">
           <AnimatePresence mode="wait">
@@ -609,7 +753,7 @@ const MembersPage = () => {
                   onClick={() => { setShowForm(true); setSubmitted(false); setCurrentStep(1); }}
                   className="border border-white text-white font-mono font-bold text-xs uppercase tracking-widest px-8 py-3.5 hover:bg-[#b61a22] hover:border-[#b61a22] transition-all duration-300 active:scale-[0.98] rounded-sm"
                 >
-                  Solicitar Inscripción_
+                  Solicitar Inscripción
                 </button>
               </motion.div>
             ) : (
