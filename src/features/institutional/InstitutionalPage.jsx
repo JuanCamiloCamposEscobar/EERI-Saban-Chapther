@@ -1,8 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-// Importación del fondo
-import backgroundInstitutional from '../../assets/backgrounds/Background_13.png';
+const backgroundInstitutional = '/media/2025/backgrounds/Background_13.png';
+
+
 
 // Animación de transición para la entrada de la página completa
 const pageVariants = {
@@ -34,17 +35,26 @@ const itemVariants = {
   show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 80, damping: 14 } }
 };
 
-// Subes dos niveles para salir de features/institutional y entrar a src/data
-import { MEMBERS as members } from "../members/MembersPage";
+// MEMBERS ahora vive en membersData.js (movido desde MembersPage.jsx)
+import { MEMBERS as members } from "../members/membersData";
 
+// Año más reciente disponible en MEMBERS (ignora year: null del Faculty Advisor)
+const latestYear = Math.max(...members.filter((m) => m.year !== null).map((m) => m.year));
+
+// BOARD muestra siempre el Faculty Advisor + la junta del año más reciente.
+// Al agregar miembros con year: 2026 en membersData.js, esto actualiza automáticamente.
 const BOARD = members.filter(
   (m) =>
-    m.role === 'Presidente' ||
-    m.role === 'Vicepresidente' ||
-    m.role === 'Secretario' ||
-    m.role === 'Tesorero' ||
-    m.role === 'Faculty Advisor'
+    m.role === 'Faculty Advisor' ||
+    (
+      (m.role === 'Presidente' ||
+       m.role === 'Vicepresidente' ||
+       m.role === 'Secretario' ||
+       m.role === 'Tesorero') &&
+      m.year === latestYear
+    )
 );
+
 
 
 const TimelinePoint = ({ year }) => {
@@ -149,7 +159,7 @@ const Institutional = () => {
           >
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent z-10 pointer-events-none" />
             <img
-              src="/group-photo.jpg"
+              src="/media/2025/misc/group-photo.jpg"
               alt="Fotografía oficial del Capítulo EERI La Sabana"
               className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105 mix-blend-luminosity group-hover:mix-blend-normal"
               onError={(e) => { e.target.src = "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=800"; }}

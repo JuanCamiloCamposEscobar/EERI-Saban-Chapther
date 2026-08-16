@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Usamos alias o ruta relativa según tu configuración de Vite
-import background14 from "../../assets/backgrounds/Background_14.png";
+const background14 = "/media/2025/backgrounds/Background_14.png";
 
 // Escaneo dinámico en caliente con Vite glob
-const mediaGlob = import.meta.glob("/public/galleries/**/*", { eager: true });
+const mediaGlob = import.meta.glob("/public/media/2025/galleries/**/*", { eager: true });
+
+
 
 // Helpers para detección y conversión de URLs de YouTube
 const isYouTubeUrl = (url) => {
@@ -189,8 +190,8 @@ const ProjectsPage = () => {
       date: "2026.01.18",
       phrase: "Primera competencia sismica del capitulo.",
       impact: "Promoviendo el conocimiento y la cultura de la ingeniería sísmica en la comunidad académica y profesional.",
-      phase: 35,
-      image: "/galleries/EERI_SDC_2026/EERI_SDC_2026_Imagenes/28.jpeg",
+      phase: 100,
+      image: "/media/2025/galleries/EERI_SDC_2026/EERI_SDC_2026_Imagenes/30.jpeg",
       details: "La Seismic Design Competition (SDC) es, sin duda, el escenario de ingeniería sísmica estudiantil más exigente y prestigioso a nivel mundial. Representa el desafío definitivo donde el cálculo estructural, la innovación en materiales y la gestión de riesgos convergen bajo una presión extrema. Para el capítulo EERI Sabana, el año 2026 marca un antes y un después en nuestra trayectoria académica. Nos enorgullece compartir que hemos asumido el reto de llevar nuestra visión técnica al ámbito internacional, convirtiéndonos en la primera universidad colombiana en participar oficialmente en esta competencia. Este hito no solo valida nuestro compromiso con la excelencia en la ingeniería sísmica, sino que también posiciona a la Universidad de La Sabana en la vanguardia de la investigación y la práctica estructural global.",
       caseStudy: {
         galleryFolder: "EERI_SDC_2026",
@@ -205,43 +206,43 @@ const ProjectsPage = () => {
             phase: "01",
             title: "Organización de los balsos / Tipificación de densidades",
             desc: "Clasificación inicial y estudio de densidades para establecer la base del análisis estructural.",
-            images: ["/galleries/EERI_SDC_2026/EERI_SDC_2026_Imagenes/29.jpeg"]
+            images: ["/media/2025/galleries/EERI_SDC_2026/EERI_SDC_2026_Imagenes/29.jpeg"]
           },
           {
             phase: "02",
             title: "Zona 1",
             desc: "Análisis y evaluación de la primera zona de estudio estructural.",
-            images: ["/galleries/EERI_SDC_2026/EERI_SDC_2026_Imagenes/22.jpeg"]
+            images: ["/media/2025/galleries/EERI_SDC_2026/EERI_SDC_2026_Imagenes/22.jpeg"]
           },
           {
             phase: "03",
             title: "Zona 2",
             desc: "Análisis y evaluación de la segunda zona de estudio estructural.",
-            images: ["/galleries/EERI_SDC_2026/EERI_SDC_2026_Imagenes/27.jpeg"]
+            images: ["/media/2025/galleries/EERI_SDC_2026/EERI_SDC_2026_Imagenes/30.jpg"]
           },
           {
             phase: "04",
             title: "Zona 3",
             desc: "Análisis y evaluación de la tercera zona de estudio estructural.",
-            images: ["/galleries/EERI_SDC_2026/EERI_SDC_2026_Imagenes/28.jpeg"]
+            images: ["/media/2025/galleries/EERI_SDC_2026/EERI_SDC_2026_Imagenes/32.jpeg"]
           },
           {
             phase: "05",
             title: "Zona 4",
             desc: "Análisis y evaluación de la cuarta zona de estudio estructural.",
-            images: ["/galleries/EERI_SDC_2026/EERI_SDC_2026_Imagenes/28.jpeg"]
+            images: ["/media/2025/galleries/EERI_SDC_2026/EERI_SDC_2026_Imagenes/33.jpeg"]
           },
           {
             phase: "06",
             title: "Forma de empaque",
             desc: "Proceso detallado de embalaje y disposición técnica de los materiales.",
-            images: ["/galleries/EERI_SDC_2026/EERI_SDC_2026_Imagenes/28.jpeg"]
+            images: ["/media/2025/galleries/EERI_SDC_2026/EERI_SDC_2026_Imagenes/34.jpeg"]
           },
           {
             phase: "07",
             title: "Resultado final",
             desc: "Consolidación de datos, conclusiones estructurales y entregable terminado.",
-            images: ["/galleries/EERI_SDC_2026/EERI_SDC_2026_Imagenes/28.jpeg"]
+            images: ["/media/2025/galleries/EERI_SDC_2026/EERI_SDC_2026_Imagenes/31.jpeg"]
           }
         ],
         resources: [
@@ -249,90 +250,7 @@ const ProjectsPage = () => {
           { name: "Memoria_Cálculo_Reforzamiento_CFRP.pdf", size: "4.1 MB", type: "pdf", url: "#" },
           { name: "Planos_Estructurales_Reforzamiento.dwg", size: "12.8 MB", type: "cad", url: "#" }
         ],
-        video_thumb: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhF/s1600/FOTO%20CAPÍTULO%20ESTUDIANTIL.jpeg"
-      }
-    },
-    {
-      id: 2,
-      code: "EERI-2026-SR02",
-      title: "Congreso ingenieria Sismica - 2026",
-      authors: "Capitulo EERI Sabana - Universidad de la Sabana",
-      date: "2026.01.18",
-      phrase: "Primera competencia sismica del capitulo.",
-      impact: "Promoviendo el conocimiento y la cultura de la ingeniería sísmica en la comunidad académica y profesional.",
-      phase: 100,
-      image: "/galleries/EERI_SDC_2026/EERI_SDC_2026_Imagenes/28.jpeg",
-      details: "La Seismic Design Competition (SDC) es, sin duda, el escenario de ingeniería sísmica estudiantil más exigente y prestigioso a nivel mundial. Representa el desafío definitivo donde el cálculo estructural, la innovación en materiales y la gestión de riesgos convergen bajo una presión extrema. Para el capítulo EERI Sabana, el año 2026 marca un antes y un después en nuestra trayectoria académica. Nos enorgullece compartir que hemos asumido el reto de llevar nuestra visión técnica al ámbito internacional, convirtiéndonos en la primera universidad colombiana en participar oficialmente en esta competencia. Este hito no solo valida nuestro compromiso con la excelencia en la ingeniería sísmica, sino que también posiciona a la Universidad de La Sabana en la vanguardia de la investigación y la práctica estructural global.",
-      caseStudy: {
-        galleryFolder: "EERI_SDC_2026",
-        videos: [
-          { id: 1, title: "Montaje Completo de la Estructura Principal", url: "" },
-          { id: 2, title: "Protocolo Técnico: Cómo Cortar los Balsos con Precisión" },
-          { id: 3, title: "Metodología de Pegado y Curado de Uniones Estructurales" },
-          { id: 4, title: "Ensayos Preliminares de Resistencia al Límite" }
-        ],
-        steps: [
-          {
-            phase: "01",
-            title: "Organización de los balsos / Tipificación de densidades",
-            desc: "Clasificación inicial y estudio de densidades para establecer la base del análisis estructural.",
-            images: ["/galleries/EERI_SDC_2026/EERI_SDC_2026_Imagenes/29.jpeg"]
-          },
-          {
-            phase: "02",
-            title: "Zona 1",
-            desc: "Análisis y evaluación de la primera zona de estudio estructural.",
-            images: ["/galleries/EERI_SDC_2026/EERI_SDC_2026_Imagenes/22.jpeg"]
-          }
-        ],
-        resources: [
-          { name: "Plantilla_Análisis_Espectral_NSR10.xlsx", size: "2.4 MB", type: "excel", url: "#" },
-          { name: "Memoria_Cálculo_Reforzamiento_CFRP.pdf", size: "4.1 MB", type: "pdf", url: "#" },
-          { name: "Planos_Estructurales_Reforzamiento.dwg", size: "12.8 MB", type: "cad", url: "#" }
-        ],
-        video_thumb: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhF/s1600/FOTO%20CAPÍTULO%20ESTUDIANTIL.jpeg"
-      }
-    },
-
-    {
-      id: 3,
-      code: "EERI-2026-SR03",
-      title: "prueba",
-      authors: "Capitulo EERI Sabana - Universidad de la Sabana",
-      date: "2026.01.18",
-      phrase: "Primera competencia sismica del capitulo.",
-      impact: "Promoviendo el conocimiento y la cultura de la ingeniería sísmica en la comunidad académica y profesional.",
-      phase: 0,
-      image: "/galleries/EERI_SDC_2026/EERI_SDC_2026_Imagenes/28.jpeg",
-      details: "La Seismic Design Competition (SDC) es, sin duda, el escenario de ingeniería sísmica estudiantil más exigente y prestigioso a nivel mundial. Representa el desafío definitivo donde el cálculo estructural, la innovación en materiales y la gestión de riesgos convergen bajo una presión extrema. Para el capítulo EERI Sabana, el año 2026 marca un antes y un después en nuestra trayectoria académica. Nos enorgullece compartir que hemos asumido el reto de llevar nuestra visión técnica al ámbito internacional, convirtiéndonos en la primera universidad colombiana en participar oficialmente en esta competencia. Este hito no solo valida nuestro compromiso con la excelencia en la ingeniería sísmica, sino que también posiciona a la Universidad de La Sabana en la vanguardia de la investigación y la práctica estructural global.",
-      caseStudy: {
-        galleryFolder: "EERI_SDC_2026",
-        videos: [
-          { id: 1, title: "Montaje Completo de la Estructura Principal", url: "" },
-          { id: 2, title: "Protocolo Técnico: Cómo Cortar los Balsos con Precisión" },
-          { id: 3, title: "Metodología de Pegado y Curado de Uniones Estructurales" },
-          { id: 4, title: "Ensayos Preliminares de Resistencia al Límite" }
-        ],
-        steps: [
-          {
-            phase: "01",
-            title: "Organización de los balsos / Tipificación de densidades",
-            desc: "Clasificación inicial y estudio de densidades para establecer la base del análisis estructural.",
-            images: ["/galleries/EERI_SDC_2026/EERI_SDC_2026_Imagenes/29.jpeg"]
-          },
-          {
-            phase: "02",
-            title: "Zona 1",
-            desc: "Análisis y evaluación de la primera zona de estudio estructural.",
-            images: ["/galleries/EERI_SDC_2026/EERI_SDC_2026_Imagenes/22.jpeg"]
-          }
-        ],
-        resources: [
-          { name: "Plantilla_Análisis_Espectral_NSR10.xlsx", size: "2.4 MB", type: "excel", url: "#" },
-          { name: "Memoria_Cálculo_Reforzamiento_CFRP.pdf", size: "4.1 MB", type: "pdf", url: "#" },
-          { name: "Planos_Estructurales_Reforzamiento.dwg", size: "12.8 MB", type: "cad", url: "#" }
-        ],
-        video_thumb: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhF/s1600/FOTO%20CAPÍTULO%20ESTUDIANTIL.jpeg"
+        // video_thumb: " "
       }
     },
   ];

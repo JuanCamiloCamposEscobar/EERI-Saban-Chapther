@@ -3,8 +3,11 @@ import { motion } from 'framer-motion';
 import ReactMarkdown from "react-markdown";
 import api from '../../utils/api';
 
+// Configuración de la noticia de relevancia por ID
+const FEATURED_POST_ID = '2'; // Cambia este ID ('1', '2', etc.) para fijar la noticia destacada
+
 // 1. Importación exacta del background técnico institucional
-import background11 from '../../assets/backgrounds/Background_11.png';
+const background11 = '/media/2025/backgrounds/Background_11.png';
 
 // ── Mock posts con estética técnica del sistema de diseño ──────────────────
 const MOCK_POSTS = [
@@ -16,7 +19,7 @@ const MOCK_POSTS = [
     excerpt: 'Evento académico y conmemorativo que celebra la instalación del Árbol de Conexiones en la Universidad de La Sabana, destacando la colaboración entre la academia y la industria en el desarrollo de estructuras en acero.',
     author: 'Capítulo EERI La Sabana',
     date: 'MAY 24, 2024',
-    image: '/group-photo.jpg',
+    image: '/media/2025/misc/group-photo.jpg',
     content: `## Introducción
 La ceremonia de inauguración del Árbol de Conexiones representa un hito para la Universidad de La Sabana, al materializar la colaboración entre el sector académico y la industria del acero. Este proyecto, posible gracias al apoyo de TECMO S.A. y el Instituto Colombiano de Construcción en Acero, simboliza la integración entre conocimiento técnico y aplicación práctica.
 
@@ -38,29 +41,24 @@ El acto central consistió en la inauguración oficial del Árbol de Conexiones,
 
 Los conferencistas invitados cuentan con una destacada trayectoria en el ámbito de la ingeniería civil y estructural, con experiencia en diseño, investigación y desarrollo normativo en Colombia y el exterior. Su participación enriqueció el evento al aportar tanto conocimientos teóricos como experiencias prácticas.
 
-La inauguración del Árbol de Conexiones refuerza el compromiso de la Universidad de La Sabana con la excelencia académica y la formación integral de sus estudiantes. Este tipo de iniciativas fomentan la conexión entre teoría y práctica, consolidando espacios de aprendizaje innovadores para las futuras generaciones de ingenieros.`,
+La inauguración del Árbol de Conexiones refuerza el compromiso de la Universidad de La Sabana con la excelencia académica y la formación integral de sus estudiantes. Este tipo de initiatives fomentan la conexión entre teoría y práctica, consolidando espacios de aprendizaje innovadores para las futuras generaciones de ingenieros.`,
   },
   {
     id: '2',
-    category: 'FASE I: SIMULACIÓN',
-    tagLabel: 'CALIBRACIÓN DE MODELOS',
-    title: 'Simulaciones Sísmicas: Calibración de Parámetros No Lineales',
-    excerpt: 'Ajuste de parámetros constitutivos para modelos no lineales de fibra en SAP2000 y correlación transitoria de espectros dinámicos de respuesta.',
-    author: 'Juan Camilo Campos',
-    date: 'MAY 02, 2024',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop',
-    content: `## Seismic Design Competition 2024\n\nOptimización del modelo analítico estructural usando matrices de rigidez avanzada en software de ingeniería sísmica especializada.`,
-  },
-  {
-    id: '3',
-    category: 'ANÁLISIS FORMAL',
-    tagLabel: 'DISEÑO ARQUITECTÓNICO',
-    title: 'Estética Arquitectónica vs. Desempeño y Arriostramientos estructurales',
-    excerpt: 'Integración de sistemas de arriostramiento en fachadas de alta transparencia y optimización de derivas operacionales bajo cargas dinámicas cíclicas.',
-    author: 'Thomas García',
-    date: 'ABR 15, 2024',
-    image: 'https://images.unsplash.com/photo-1486325157521-729971946765?q=80&w=800&auto=format&fit=crop',
-    content: `## Integración Formal\n\nEl desafío técnico de incorporar disipadores estéticos sin irrumpir en las transparencias ni en las plantas libres arquitectónicas demandadas por las normativas modernas.`,
+    category: 'Competencia SDC 2026',
+    tagLabel: 'HITO HISTÓRICO',
+    title: 'EERI Sabana en la SDC 2026: Representando a Colombia ante el Mundo',
+    excerpt: 'La Universidad de La Sabana marca un precedente al convertirse en la primera institución colombiana en participar oficialmente en la Seismic Design Competition (SDC).',
+    author: 'Capítulo EERI Sabana',
+    date: 'JUN 13, 2026',
+    image: '/media/2025/galleries/EERI_SDC_2026/EERI_SDC_2026_Imagenes/30.jpeg',
+    content: `## Camino a la SDC 2026: Una Visión Internacional
+
+La **Seismic Design Competition (SDC)** es, sin duda, el escenario de ingeniería sísmica estudiantil más exigente y prestigioso a nivel mundial [2]. Representa el desafío definitivo donde el cálculo estructural, la innovación en materiales y la gestión de riesgos convergen bajo una presión extrema [2].
+
+Para el capítulo EERI Sabana, el año 2026 marca un antes y un después en nuestra trayectoria académica [1]. Nos enorgullece compartir que hemos asumido el reto de llevar nuestra visión técnica al ámbito internacional, convirtiéndonos en **la primera universidad colombiana en participar oficialmente en esta competencia** [1].
+
+Este hito no solo valida nuestro compromiso con la excelencia en la ingeniería sísmica, sino que también posiciona a la **Universidad de La Sabana** en la vanguardia de la investigación y la práctica estructural global [1]. Nuestro equipo está listo para demostrar que el ingenio colombiano tiene un lugar en el centro del análisis sísmico de alta precisión.`,
   },
 ];
 
@@ -121,8 +119,11 @@ const BlogPage = () => {
     );
   }
 
-  const featuredPost = posts[0] || MOCK_POSTS[0];
-  const gridPosts = posts.slice(1);
+  // Filtrado y selección dinámica según la variable FEATURED_POST_ID
+  const currentPosts = posts.length > 0 ? posts : MOCK_POSTS;
+  const foundFeatured = currentPosts.find(post => post.id === FEATURED_POST_ID);
+  const featuredPost = foundFeatured || currentPosts[0];
+  const gridPosts = currentPosts.filter(post => post.id !== featuredPost.id);
 
   return (
     // Contenedor principal con el Background_11.png inyectado dinámicamente
@@ -147,7 +148,7 @@ const BlogPage = () => {
                 onClick={() => setSelectedPost(null)}
                 className="text-white font-bold mb-10 hover:text-[#fd6e59] transition-colors flex items-center gap-2 group font-['Montserrat'] text-xs tracking-wider"
               >
-                <span className="material-symbols-outlined group-hover:-translate-x-1 transition-transform text-sm">arrow_back</span>
+                <span className="material-symbols-outlined group-hover:-translate-x-1 transition-transform text-sm">←</span>
                 VOLVER AL PANEL DE PUBLICACIONES
               </button>
 
@@ -233,17 +234,11 @@ const BlogPage = () => {
                 </div>
                 <div className="bg-[#1b1f21]/90 p-4 rounded-sm border border-[#2D3748] border-l-4 border-l-[#ab3424] min-w-[220px] backdrop-blur-sm">
                   <span className="text-[10px] text-[#799dd6] block mb-1 font-mono font-bold tracking-widest">CÓDIGO DE PROYECTO</span>
-                  <span className="text-lg font-bold text-white font-['Montserrat'] tracking-wide">SDC-2024-US</span>
+                  <span className="text-lg font-bold text-white font-['Montserrat'] tracking-wide">SDC-2026-US</span>
                 </div>
               </div>
             </header>
 
-            {demoMode && (
-              <div className="px-4 py-3 rounded-sm bg-amber-950/40 border border-amber-600/30 text-amber-400 font-['Hanken_Grotesk'] text-xs flex items-center gap-2 relative z-30">
-                <span className="material-symbols-outlined text-sm">warning</span>
-                <span>Modo simulación de datos — Desplegando registros analíticos locales preestablecidos.</span>
-              </div>
-            )}
 
             {/* Estructura de Grilla de 12 Columnas */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
@@ -294,7 +289,7 @@ const BlogPage = () => {
                         className="inline-flex items-center gap-2 bg-transparent border-2 border-[#003366] text-white px-5 py-2.5 font-['Montserrat'] text-xs font-bold hover:bg-[#003366] active:translate-y-[1px] transition-all tracking-wider rounded-sm shadow-[2px_2px_0px_0px_#001e40]"
                       >
                         LEER REPORTE COMPLETO
-                        <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                        <span className="material-symbols-outlined text-sm">→</span>
                       </button>
                     </div>
                   </motion.div>
@@ -357,13 +352,13 @@ const BlogPage = () => {
                 <div className="bg-[#1b1f21]/90 p-6 border-l-4 border-l-[#ab3424] rounded-sm border border-[#2D3748] shadow-md backdrop-blur-sm">
                   <div className="flex items-center gap-2 mb-6">
                     <span className="material-symbols-outlined text-[#ab3424] text-base">analytics</span>
-                    <h3 className="font-['Montserrat'] text-xs font-bold text-white tracking-widest uppercase">Estado SDC 2024</h3>
+                    <h3 className="font-['Montserrat'] text-xs font-bold text-white tracking-widest uppercase">Estado SDC 2026</h3>
                   </div>
                   <div className="space-y-6">
                     <div>
                       <div className="flex justify-between mb-2 text-[11px] font-mono">
                         <span className="text-[#999c9f]">Tower Construction</span>
-                        <span className="text-[#ab3424] font-bold">85%</span>
+                        <span className="text-[#ab3424] font-bold">100%</span>
                       </div>
                       <div className="h-2 w-full bg-[#001e40] rounded-none border border-[#2D3748]">
                         <div className="h-full bg-[#ab3424] transition-all duration-500 rounded-none" style={{ width: '85%' }}></div>
@@ -372,61 +367,22 @@ const BlogPage = () => {
                     <div>
                       <div className="flex justify-between mb-2 text-[11px] font-mono">
                         <span className="text-[#999c9f]">Documentation Phase</span>
-                        <span className="text-[#799dd6] font-bold">60%</span>
+                        <span className="text-[#799dd6] font-bold">100%</span>
                       </div>
                       <div className="h-2 w-full bg-[#001e40] rounded-none border border-[#2D3748]">
-                        <div className="h-full bg-[#799dd6] transition-all duration-500 rounded-none" style={{ width: '60%' }}></div>
+                        <div className="h-full bg-[#799dd6] transition-all duration-500 rounded-none" style={{ width: '100%' }}></div>
                       </div>
                     </div>
 
                     <div className="bg-[#001e40]/40 p-4 rounded-sm border border-[#2D3748] flex items-center gap-4 mt-6">
                       <div className="text-center border-r border-[#2D3748] pr-4 flex-shrink-0">
-                        <span className="block font-['Montserrat'] text-xl font-bold text-white">12</span>
+                        <span className="block font-['Montserrat'] text-xl font-bold text-white">0</span>
                         <span className="text-[9px] text-[#999c9f] uppercase tracking-wider font-mono font-bold block">Días para envío</span>
                       </div>
                       <p className="text-xs text-[#c4c7ca] font-['Hanken_Grotesk'] italic leading-snug">
                         "La precisión estructural no es opcional, es nuestra firma corporativa."
                       </p>
                     </div>
-                  </div>
-                </div>
-
-                {/* Tabla Metodológica */}
-                <div className="bg-[#1b1f21]/90 p-6 rounded-sm border border-[#2D3748] shadow-sm backdrop-blur-sm">
-                  <h3 className="text-[10px] font-bold text-[#799dd6] mb-4 uppercase tracking-widest font-mono">Technical Methodology</h3>
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-left font-mono text-[11px]">
-                      <thead>
-                        <tr className="border-b border-[#2D3748] text-[#999c9f]">
-                          <th className="py-2 font-semibold">PHASE</th>
-                          <th className="py-2 font-semibold">FREQ (Hz)</th>
-                          <th className="py-2 font-semibold text-right">STATUS</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-[#2D3748] text-[#e0e3e6]">
-                        <tr>
-                          <td className="py-3 font-medium">Baseline</td>
-                          <td className="py-3 text-[#799dd6]">1.24</td>
-                          <td className="py-3 text-right">
-                            <span className="bg-green-500/10 text-green-400 border border-green-500/20 px-2 py-0.5 rounded-sm text-[9px] font-bold">STABLE</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="py-3 font-medium">Resonance</td>
-                          <td className="py-3 text-[#799dd6]">0.85</td>
-                          <td className="py-3 text-right">
-                            <span className="bg-red-500/10 text-red-400 border border-red-500/20 px-2 py-0.5 rounded-sm text-[9px] font-bold">CRITICAL</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="py-3 font-medium">Damped Sweep</td>
-                          <td className="py-3 text-[#799dd6]">1.42</td>
-                          <td className="py-3 text-right">
-                            <span className="bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2 py-0.5 rounded-sm text-[9px] font-bold">CONTROLLED</span>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
                   </div>
                 </div>
 
@@ -438,7 +394,7 @@ const BlogPage = () => {
                     <div className="mb-8 relative">
                       {/* Marcador Cuadrado EERI Red */}
                       <div className="absolute -left-[31px] top-1 w-3 h-3 bg-[#ab3424] border-2 border-[#1b1f21] rounded-none" />
-                      <span className="font-mono text-[10px] text-[#ab3424] font-bold block mb-1">SEP 2023</span>
+                      <span className="font-mono text-[10px] text-[#ab3424] font-bold block mb-1">SEP 2025</span>
                       <h4 className="text-white text-xs font-bold font-['Montserrat'] tracking-wide">Proposal Submission</h4>
                       <p className="text-xs text-[#c4c7ca] font-['Hanken_Grotesk'] mt-1">Aprobación inicial del diseño conceptual y volumétrico.</p>
                     </div>
@@ -446,7 +402,7 @@ const BlogPage = () => {
                     <div className="mb-8 relative">
                       {/* Marcador Cuadrado EERI Red */}
                       <div className="absolute -left-[31px] top-1 w-3 h-3 bg-[#ab3424] border-2 border-[#1b1f21] rounded-none" />
-                      <span className="font-mono text-[10px] text-[#799dd6] font-bold block mb-1">ENE 2024</span>
+                      <span className="font-mono text-[10px] text-[#799dd6] font-bold block mb-1">ENE 2026</span>
                       <h4 className="text-white text-xs font-bold font-['Montserrat'] tracking-wide">Structural Optimization</h4>
                       <p className="text-xs text-[#c4c7ca] font-['Hanken_Grotesk'] mt-1">Pruebas mecánicas dinámicas en mesa vibratoria escala 1:20.</p>
                     </div>
@@ -454,7 +410,7 @@ const BlogPage = () => {
                     <div className="relative">
                       {/* Marcador Cuadrado EERI Red */}
                       <div className="absolute -left-[31px] top-1 w-3 h-3 bg-[#ab3424] border-2 border-[#1b1f21] rounded-none" />
-                      <span className="font-mono text-[10px] text-[#999c9f] font-bold block mb-1">JUN 2024</span>
+                      <span className="font-mono text-[10px] text-[#999c9f] font-bold block mb-1">JUN 2026</span>
                       <h4 className="text-white text-xs font-bold font-['Montserrat'] tracking-wide">National Competition</h4>
                       <p className="text-xs text-[#c4c7ca] font-['Hanken_Grotesk'] mt-1">Defensa técnica final y puesta en carga crítica estructural.</p>
                     </div>

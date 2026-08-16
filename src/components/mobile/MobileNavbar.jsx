@@ -9,13 +9,15 @@ import {
   Briefcase,
   BookOpen,
   Users,
-  Heart,
   Menu,
 } from "lucide-react";
 
 import LoginButton from "../../features/auth/components/LoginButton";
-import logoUniversidad from "../../assets/logos/university.png";
-import logoCapitulo from "../../assets/logos/eeri.png";
+const logoUniversidad = "/media/2025/logos/university.png";
+const logoCapitulo = "/media/2025/logos/eeri.png";
+const logoOficialCapitulo = "/media/2025/logos/Logo Oficial.png";
+
+
 
 const navItems = [
   { name: "Inicio", translationKey: "home", path: "/", icon: Home },
@@ -24,7 +26,7 @@ const navItems = [
   { name: "Proyectos", translationKey: "projects", path: "/projects", icon: Briefcase },
   { name: "Blog", translationKey: "blog", path: "/blog", icon: BookOpen },
   { name: "Miembros", translationKey: "members", path: "/members", icon: Users },
-  { name: "Fondos", translationKey: "Funding", path: "/donations", icon: Heart },
+  // { name: "Fondos", translationKey: "Funding", path: "/donations", icon: Heart },
 ];
 
 const MobileNavbar = () => {
@@ -35,19 +37,25 @@ const MobileNavbar = () => {
   const isMatch = (itemPath, targetPath) =>
     itemPath === "/" ? targetPath === "/" : targetPath.startsWith(itemPath);
 
+  const sanitizeName = (text) => {
+    if (!text) return "";
+    return text.replace(/^\d+[\s_.-]*/, "").replace(/^nav./i, "");
+  };
+
   return (
     <>
       {/* HEADER SOLO LOGOS (SIN BOTÓN) */}
       <header className="lg:hidden sticky top-0 z-40 h-16 px-4 bg-[#000814]/90 backdrop-blur-md border-b border-white/10 flex items-center">
         <Link to="/" className="flex items-center gap-3">
-          <img src={logoUniversidad} className="h-6 object-contain" />
+          <img src={logoUniversidad} className="h-6 object-contain" alt="Universidad" />
           <div className="h-4 w-px bg-white/20" />
-          <img src={logoCapitulo} className="h-6 object-contain" />
+          <img src={logoCapitulo} className="h-6 object-contain" alt="EERI" />
+          <img src={logoOficialCapitulo} className="h-6 object-contain" alt="EERI Sabana" />
           <div className="flex flex-col ml-2">
-            <span className="text-[10px] text-white font-bold">
+            <span className="text-[10px] text-white font-extrabold tracking-wider">
               UNIVERSIDAD DE LA SABANA
             </span>
-            <span className="text-[9px] text-[#ab3424] uppercase font-mono tracking-widest">
+            <span className="text-[9px] text-[#ab3424] uppercase font-mono font-bold tracking-[0.25em]">
               EERI STUDENT CHAPTER
             </span>
           </div>
@@ -74,10 +82,13 @@ const MobileNavbar = () => {
               className="fixed top-0 right-0 h-full w-[85%] max-w-sm z-50 bg-[#001124] border-l border-white/10 p-6 pt-20 flex flex-col"
             >
               <div className="flex-1 overflow-y-auto space-y-2">
-
                 {navItems.map((item) => {
                   const Icon = item.icon;
                   const isActive = isMatch(item.path, location.pathname);
+
+                  const translationKeyFull = `nav.${item.translationKey}`;
+                  const fetchedTranslation = t(translationKeyFull);
+                  const finalDisplayName = sanitizeName(fetchedTranslation !== translationKeyFull ? fetchedTranslation : item.name);
 
                   return (
                     <Link
@@ -90,8 +101,8 @@ const MobileNavbar = () => {
                         }`}
                     >
                       <Icon size={18} />
-                      <span className="text-xs font-bold uppercase">
-                        {t(`nav.${item.translationKey}`) !== `nav.${item.translationKey}` ? t(`nav.${item.translationKey}`) : item.name}
+                      <span className="text-xs font-bold uppercase font-mono">
+                        {finalDisplayName}
                       </span>
                     </Link>
                   );
@@ -109,21 +120,24 @@ const MobileNavbar = () => {
       {/* BOTTOM NAV */}
       <div className="lg:hidden fixed bottom-4 left-4 right-4 z-30 max-w-md mx-auto">
         <div className="bg-[#001428]/90 backdrop-blur-lg border border-white/10 p-1 flex justify-around">
-
           {navItems.slice(0, 4).map((item) => {
             const Icon = item.icon;
             const isActive = isMatch(item.path, location.pathname);
+
+            const translationKeyFull = `nav.${item.translationKey}`;
+            const fetchedTranslation = t(translationKeyFull);
+            const finalDisplayName = sanitizeName(fetchedTranslation !== translationKeyFull ? fetchedTranslation : item.name);
 
             return (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`flex flex-col items-center flex-1 py-1 ${isActive ? "text-[#00f0ff]" : "text-white/40"
+                className={`flex flex-col items-center flex-1 py-1 ${isActive ? "text-[#ab3424]" : "text-white/40"
                   }`}
               >
                 <Icon size={16} />
-                <span className="text-[8px] mt-1 uppercase">
-                  {item.name}
+                <span className="text-[8px] mt-1 uppercase font-mono font-bold">
+                  {finalDisplayName}
                 </span>
               </Link>
             );
@@ -134,7 +148,7 @@ const MobileNavbar = () => {
             className="flex flex-col items-center flex-1 text-white/40"
           >
             <Menu size={16} />
-            <span className="text-[8px] mt-1 uppercase">Menú</span>
+            <span className="text-[8px] mt-1 uppercase font-mono font-bold">Menú</span>
           </button>
         </div>
       </div>

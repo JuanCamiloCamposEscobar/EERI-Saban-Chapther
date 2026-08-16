@@ -6,108 +6,19 @@ import { COMMITTEES } from "../../data/committees";
 import { supabase } from '../../supabaseClient'
 
 // Assets
-import background5 from '../../assets/backgrounds/Background_5.png';
+const background5 = '/media/2025/backgrounds/Background_5.png';
 
-// ── DATA CONSTANTS ──
-export const MEMBERS = [
-  {
-    name: 'Dr. Diego Roberto Martinez',
-    role: 'Faculty Advisor',
-    semester: 'Profesor Principal',
-    linkedin: 'https://www.linkedin.com/in/diego-martinez-pineda?utm_source=share_via&utm_content=profile&utm_medium=member_android',
-    photo: '/Members/Profesor.jpeg',
-    quote: 'Guíando a la próxima generación de ingenieros hacia la resiliencia estructural.'
-  },
-  {
-    name: 'Juan Camilo Buitrago Hurtado',
-    role: 'Presidente',
-    semester: '8°',
-    linkedin: 'https://www.linkedin.com/in/juan-camilo-buitrago-hurtado',
-    photo: '/Members/Presidente.jpeg',
-    quote: 'Liderando la innovación sismorresistente desde la academia.'
-  },
-  {
-    name: 'Juan Camilo Campos Escobar',
-    role: 'Vicepresidente',
-    semester: '4°',
-    linkedin: 'https://www.linkedin.com/in/juan-camilo-campos-escobar-a6a3533b5?utm_source=share_via&utm_content=profile&utm_medium=member_android',
-    photo: '/Members/vicepresidente.png',
-    quote: 'Coordinando esfuerzos para la gestión del riesgo y diseño avanzado.'
-  },
-  {
-    name: 'Thomas Alejandro Leon Garcia',
-    role: 'Secretario',
-    semester: '9°',
-    linkedin: '#',
-    photo: '',
-    quote: 'Estructurando la documentación y el rigor técnico del capítulo.'
-  },
-  {
-    name: 'Daniel Alejandro Parra Guerrero',
-    role: 'Tesorero',
-    semester: '8°',
-    linkedin: 'https://www.linkedin.com/in/daniel-alejandro-parra-guerrero?utm_source=share_via&utm_content=profile&utm_medium=member_ios',
-    photo: '/Members/Tesorero.jpeg',
-    quote: 'Optimizando recursos para viabilizar la investigación y el desarrollo.'
-  },
-  { name: 'Laura Sofia Artunduaga Pulido', role: 'Miembro Activo', semester: '4°', linkedin: 'https://www.linkedin.com/in/laura-artunduaga-7120b3358?utm_source=share_via&utm_content=profile&utm_medium=member_ios', photo: '/Members/LauraA.jpeg' },
-  { name: 'Angela Maria Ospino Julio', role: 'Miembro Activo', semester: '3°', linkedin: '#', photo: '/Members/Angela.jpeg' },
-  { name: 'Juan Felipe Arroyave Calvo', role: 'Miembro Activo', semester: '4°', linkedin: '#', photo: '' },
-  { name: 'Juan Daniel Salcedo Urango', role: 'Miembro Activo', semester: '4°', linkedin: '#', photo: '' },
-  { name: 'Pedro Nicolás Cortés Rojas', role: 'Miembro Activo', semester: 'Practicas', linkedin: '#', photo: '' },
-  { name: 'Germán Darío Hernández Mora ', role: 'Miembro Activo', semester: 'Practicas', linkedin: '#', photo: '' },
-  { name: 'Nicolas Rafael Bilbao Cure', role: 'Miembro Activo', semester: '9°', linkedin: 'https://www.linkedin.com/in/nicolas-r-bilbao-cure-26b58330b?utm_source=share_via&utm_content=profile&utm_medium=member_android', photo: '/Members/NicolasB.jpeg' },
-  { name: 'Brayan Stiven Trujillo Guayara', role: 'Miembro Activo', semester: '7°', linkedin: '#', photo: '' },
-];
 
-// ── DATA CONSTANTS FOR FOUNDERS ──
-const FOUNDERS = [
-  {
-    name: 'Juan Camilo Buitrago Hurtado',
-    role: 'Presidente Fundador',
-    period: '2024 - 2025',
-    contribution: 'Gestión inicial y establecimiento de las bases del capítulo académico.',
-    linkedin: 'https://www.linkedin.com/in/juan-camilo-buitrago-hurtado',
-    photo: '/Members/Founders/Buitrago.jpeg'
-  },
-  {
-    name: 'Juan Camilo Campos Escobar',
-    role: 'Vicepresidente Fundador',
-    period: '2024 - 2025',
-    contribution: 'Co-líder en el desarrollo estratégico, estructuración de comités y creador de la pagina web.',
-    linkedin: 'https://www.linkedin.com/in/juan-camilo-campos-escobar-a6a3533b5?utm_source=share_via&utm_content=profile&utm_medium=member_android',
-    photo: '/Members/Founders/Campos.png'
-  },
-  {
-    name: 'Dr. Diego Roberto Martinez',
-    role: 'Promotor & Faculty Advisor',
-    period: 'Fundación',
-    contribution: 'Soporte institucional, académico y mentoría esencial para la validación del capítulo.',
-    linkedin: 'https://www.linkedin.com/in/diego-martinez-pineda',
-    photo: '/Members/Founders/Profesor.jpeg'
-  },
-  {
-    name: 'Thomas Alejandro Leon Garcia',
-    role: 'Secretario',
-    period: '2024 - 2025',
-    contribution: 'Estructurando la documentación y el rigor técnico del capítulo.',
-    linkedin: '#',
-    photo: '',
-  },
-  {
-    name: 'Daniel Alejandro Parra Guerrero',
-    role: 'Tesorero',
-    period: '2024 - 2025',
-    contribution: 'Optimizando recursos para viabilizar la investigación y el desarrollo.',
-    linkedin: 'https://www.linkedin.com/in/daniel-alejandro-parra-guerrero?utm_source=share_via&utm_content=profile&utm_medium=member_ios',
-    photo: '/Members/Founders/Parra.jpeg'
-  }
-];
+
+// ── DATA IMPORTS ──
+import { MEMBERS, FOUNDERS } from './membersData';
+// Años disponibles derivados dinámicamente del array MEMBERS
+const AVAILABLE_YEARS = [...new Set(MEMBERS.map(m => m.year).filter(Boolean))].sort((a, b) => b - a);
 const STATS = [
-  { icon: '👥', value: 44, label: 'Estudiantes del Capítulo' },
-  { icon: '🔬', value: 5, label: 'Investigaciones' },
-  { icon: '🏢', value: 6, label: 'Comités Activos' },
-  { icon: '🌎', value: 1, label: 'Eventos Realizados' }
+  { icon: '👥', value: 12, label: 'Estudiantes del Capítulo' },
+  { icon: '🔬', value: 2, label: 'Investigaciones' },
+  { icon: '🏢', value: 3, label: 'Comités Activos' },
+  { icon: '🌎', value: 2, label: 'Eventos Realizados' }
 ];
 
 // Actualizado a los 6 comités requeridos con su metadata correspondiente
@@ -175,6 +86,7 @@ const AnimatedCounter = ({ target }) => {
 const MembersPage = () => {
   const [showForm, setShowForm] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [selectedYear, setSelectedYear] = useState(AVAILABLE_YEARS[0] ?? 2025);
   const [currentStep, setCurrentStep] = useState(1);
   const [loading, setLoading] = useState(false);
 
@@ -184,7 +96,7 @@ const MembersPage = () => {
     email: '',
     phone: '',
     semester: 4,
-    selectedCommittee: 'EERI-INV',
+    selectedCommittee: 'EERI-COM',
     motivation: ''
   };
 
@@ -281,9 +193,11 @@ const MembersPage = () => {
   };
 
   // Filtrado de jerarquía organizacional
+  // facultyAdvisor: siempre visible (year: null), no se filtra
   const facultyAdvisor = MEMBERS.find(m => m.role === 'Faculty Advisor');
-  const executiveBoard = MEMBERS.filter(m => m.role !== 'Miembro Activo' && m.role !== 'Faculty Advisor');
-  const activeMembers = MEMBERS.filter(m => m.role === 'Miembro Activo');
+  // executiveBoard y activeMembers se filtran por el año seleccionado
+  const executiveBoard = MEMBERS.filter(m => m.role !== 'Miembro Activo' && m.role !== 'Faculty Advisor' && m.year === selectedYear);
+  const activeMembers = MEMBERS.filter(m => m.role === 'Miembro Activo' && m.year === selectedYear);
 
   return (
     <div
@@ -399,6 +313,27 @@ const MembersPage = () => {
             </div>
           )}
 
+          {/* ── SELECTOR DE AÑO / COHORTE (solo visible cuando hay más de un año) ── */}
+          {AVAILABLE_YEARS.length > 1 && (
+            <div className="flex items-center gap-3 flex-wrap">
+              <span className="font-mono text-[9px] font-bold tracking-widest text-white/30 uppercase">// COHORTE</span>
+              {AVAILABLE_YEARS.map((yr) => (
+                <button
+                  key={yr}
+                  onClick={() => setSelectedYear(yr)}
+                  className={`font-mono text-[10px] font-bold uppercase tracking-widest px-4 py-1.5 border transition-colors rounded-sm ${
+                    selectedYear === yr
+                      ? 'border-[#b61a22] bg-[#b61a22]/10 text-white'
+                      : 'border-white/10 text-white/40 hover:border-blue-400 hover:text-white/70'
+                  }`}
+                >
+                  {yr}
+                </button>
+              ))}
+            </div>
+          )}
+
+
           {/* Subsección: Mesa Directiva */}
           <div className="space-y-6">
             <div className="flex items-center gap-4">
@@ -409,7 +344,15 @@ const MembersPage = () => {
               <span className="font-mono text-[10px] text-blue-400/40">// EXECUTIVE_BOARD</span>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            <AnimatePresence mode="wait">
+            <motion.div
+              key={selectedYear + '-board'}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.25 }}
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6 max-w-5xl mx-auto"
+            >
               {executiveBoard.map((member, i) => (
                 <div key={i} className="border border-blue-500/20 bg-blue-950/10 backdrop-blur-sm p-8 flex flex-col items-center text-center relative group hover:border-blue-500/50 hover:bg-blue-500/[0.04] transition-all duration-300 rounded-sm shadow-md">
                   <span className="absolute top-3 left-4 font-mono text-[9px] text-blue-400/30">
@@ -470,7 +413,8 @@ const MembersPage = () => {
                   </div>
                 </div>
               ))}
-            </div>
+            </motion.div>
+            </AnimatePresence>
           </div>
 
           {/* ── AGREGADO: SUBSECCIÓN DE COMITÉS DEL CAPÍTULO ── */}
@@ -579,7 +523,15 @@ const MembersPage = () => {
               <span className="font-mono text-[10px] text-white/30">// TOTAL_COUNT: {activeMembers.length}</span>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            <AnimatePresence mode="wait">
+            <motion.div
+              key={selectedYear + '-active'}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.25 }}
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4"
+            >
               {activeMembers.map((member, i) => (
                 <div key={i} className="border border-white/10 bg-black/40 backdrop-blur-sm p-6 flex flex-col items-center text-center relative group hover:border-[#b61a22]/50 hover:bg-white/[0.04] transition-all duration-300 rounded-sm">
                   <span className="absolute top-3 left-4 font-mono text-[9px] text-white/20">
@@ -626,7 +578,8 @@ const MembersPage = () => {
                   </div>
                 </div>
               ))}
-            </div>
+            </motion.div>
+            </AnimatePresence>
           </div>
         </section>
 

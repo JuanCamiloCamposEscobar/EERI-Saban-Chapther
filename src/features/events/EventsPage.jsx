@@ -2,50 +2,50 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import api from '../../utils/api';
 
-import background6 from '../../assets/backgrounds/Background_6.png';
+const background6 = '/media/2025/backgrounds/Background_6.png';
 
 const MOCK_EVENTS = [
   {
     id: '1',
-    title: 'Inauguración: Árbol de Conexiones',
-    version: '1.0.0-EVENT',
+    title: 'Reunion de inicio del capitulo EERI 2026',
+    version: '1.0.0-SABEERI',
     coordinates: 'COORD: 4.8616° N, 74.0334° W',
-    anomaly: 'CEREMONIA OFICIAL: Símbolo de Innovación',
-    description: 'Inauguración de la escultura donada por TECMO S.A. Un espacio para celebrar el aprendizaje, la ingeniería y el crecimiento colectivo en nuestra Universidad de La Sabana.',
+    anomaly: 'Reunión de inicio: Capítulo EERI 2026',
+    description: 'La Reunión de Inicio de la EERI será un espacio clave para presentar los objetivos, alcances y actividades que se desarrollarán durante el período de trabajo. Este encuentro permitirán fortalecer la articulación entre los participantes, resolver inquietudes, establecer compromisos y compartir la visión estratégica, sentando las bases para una participación activa y el logro de resultados exitosos.',
     date: '2026-05-27',
     type: 'IN_PERSON',
-    image: '/Eventos/Precensial/InauguracionArbol.jpg',
-    capacity: 150,
-    registered: 0,
-    location: 'Fablab, Zona Árbol de Conexiones',
-    requirements: ['Registro previo obligatorio', 'Puntualidad en la ceremonia'],
-    registrationLink: 'https://forms.cloud.microsoft/pages/responsepage.aspx?id=MRalrP4ADUmRqxY--HJg7iN3eQWGHKNLl0RNgFTjwOBUNVhaTzZEWEpJSk5ZU0U0UEFIOE5LOEVTWC4u&route=shorturl'
+    image: '/media/2025/events/Precensial/1.2 EERI_Sabana_Poster.jpg',
+    capacity: 70,
+    registered: 10,
+    location: 'Fablab, Salón por confirmar',
+    requirements: ['Horario: 12:30 p.m. (aprox)', 'Haber visto o estar cursando estática'],
+    registrationLink: 'https://forms.cloud.microsoft/r/9nf7hJ9Ebe'
   },
   {
     id: '2',
-    title: 'Conferencia 01: Edificio Atrio',
+    title: 'Conferencia 01: Introducción a la Ingeniería Sísmica',
     version: '1.0.1-CONF',
     coordinates: 'COORD: 4.8616° N, 74.0334° W',
-    anomaly: 'CONFERENCIA: Diseño Estructural',
-    description: 'Diseño estructural del edificio “Atrio”. Ponente: Ing. Gabriel Valencia Clement, Profesor universitario y gerente de TECMO S.A.',
+    anomaly: 'CONFERENCIA: Introducción a la Ingeniería Sísmica',
+    description: 'Espacio de contextualización sobre los fundamentos del diseño y la resiliencia estructural.',
     date: '2026-05-27',
     type: 'IN_PERSON',
-    image: 'https://tecmo.com.co/wp-content/uploads/2020/10/1_1__EDIF__Atrio-1120357.png', // Misma imagen del evento base
+    image: '/media/2025/events/Precensial/InauguracionArbol.jpg',
     capacity: 50,
     registered: 0,
     location: 'Fablab, Salón Práctica Libre',
-    requirements: ['Horario: 9:00 a.m.']
+    requirements: ['Horario: 9:00 a.m. (aprox)']
   },
   {
     id: '3',
-    title: 'Conferencia 02: Soldadura en Acero',
+    title: 'Conferencia 02: Soldadura Sísmica',
     version: '1.0.2-CONF',
     coordinates: 'COORD: 4.8616° N, 74.0334° W',
-    anomaly: 'CONFERENCIA: Resistencia Sísmica',
+    anomaly: 'CONFERENCIA: Soldadura en Sistemas Sísmicos',
     description: 'Soldadura para Sistemas de Resistencia Sísmica en Acero. Ponente: Ing. Luis Enrique Rodríguez, Profesor universitario y subgerente de TECMO S.A.',
     date: '2026-05-27',
     type: 'IN_PERSON',
-    image: '/Eventos/Precensial/InauguracionArbol.jpg',
+    image: '/media/2025/events/Precensial/InauguracionArbol.jpg',
     capacity: 50,
     registered: 0,
     location: 'Fablab, Salón Práctica Libre',
@@ -60,13 +60,30 @@ const MOCK_EVENTS = [
     description: 'Evaluación Sísmica del Puente de Acceso a Anchorage, Alaska. Ponente: Ing. Diego Roberto Martínez, Profesor Asociado, Universidad de La Sabana.',
     date: '2026-05-27',
     type: 'IN_PERSON',
-    image: '/Eventos/Precensial/InauguracionArbol.jpg',
+    image: '/media/2025/events/Precensial/InauguracionArbol.jpg',
     capacity: 50,
     registered: 0,
     location: 'Fablab, Salón Práctica Libre',
     requirements: ['Horario: 11:00 a.m. (aprox)']
+  },
+  {
+    id: '5',
+    title: 'Inauguración: Árbol de Conexiones',
+    version: '1.0.0-EVENT',
+    coordinates: 'COORD: 4.8616° N, 74.0334° W',
+    anomaly: 'CEREMONIA OFICIAL: Símbolo de Innovación',
+    description: 'Inauguración de la escultura donada por TECMO S.A. Un espacio para celebrar el aprendizaje, la ingeniería y el crecimiento colectivo en nuestra Universidad de La Sabana.',
+    date: '2026-05-27',
+    type: 'IN_PERSON',
+    image: '/media/2025/events/Precensial/InauguracionArbol.jpg',
+    capacity: 150,
+    registered: 0,
+    location: 'Fablab, Zona Árbol de Conexiones',
+    requirements: ['Registro previo obligatorio', 'Puntualidad en la ceremonia'],
+    registrationLink: 'https://forms.cloud.microsoft/pages/responsepage.aspx?id=MRalrP4ADUmRqxY--HJg7iN3eQWGHKNLl0RNgFTjwOBUNVhaTzZEWEpJSk5ZU0U0UEFIOE5LOEVTWC4u&route=shorturl'
   }
 ];
+
 
 const TYPE_STYLES = {
   IN_PERSON: 'bg-[#ab3424]/40 text-[#ff7360] border border-[#ff5540]/60 shadow-[0_0_15px_rgba(171,52,36,0.3)]',

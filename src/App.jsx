@@ -25,12 +25,16 @@ import MembersPage from './features/members/MembersPage';
 import DonationsPage from './features/donations/DonationsPage';
 import { COMMITTEES } from "./data/committees";
 
-import logoCapitulo from './assets/logos/eeri.png';
-import imgHero from './assets/logos/eeri.png';
+// LOGOS Y BACKGROUNDS DESDE /media/2025/
+const logoUniversidad = "/media/2025/logos/university.png";
+const logoCapitulo = "/media/2025/logos/eeri.png";
+const imgHero = "/media/2025/logos/eeri.png";
+const logoOficialCapitulo = "/media/2025/logos/Logo Oficial.png";
 
-import homeBackground from './assets/backgrounds/Background_7.png';
-// ✅ CORREGIDO: Cambiado a B mayúscula para evitar el error de rolldown/vite en Vercel
-import heroBanner from './assets/backgrounds/Background_12.png';
+const homeBackground = "/media/2025/backgrounds/Background_7.png";
+const heroBanner = "/media/2025/backgrounds/Background_12.png";
+
+
 
 /* ───────── CONFIGURACIÓN E INICIALIZACIÓN DE SUPABASE ───────── */
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
@@ -75,8 +79,10 @@ const SplashScreen = ({ onComplete }) => {
       transition={{ duration: 0.6, ease: 'easeInOut' }}
       className="fixed inset-0 flex flex-col justify-center items-center bg-[#000814] z-50 overflow-hidden"
     >
+      {/* Fondo de cuadrícula técnica */}
       <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[length:24px_24px]" />
 
+      {/* Animación de los cuadrados (Mantenida) */}
       <div className="flex gap-4 mb-8 justify-center items-center h-16 relative z-10">
         <div className="square w-4 h-4 border-2 border-solid border-transparent rounded-[1px]" />
         <div className="square w-4 h-4 border-2 border-solid border-transparent rounded-[1px]" />
@@ -84,7 +90,19 @@ const SplashScreen = ({ onComplete }) => {
         <div className="square w-4 h-4 border-2 border-solid border-transparent rounded-[1px]" />
       </div>
 
-      <div className="z-10 flex flex-col items-center gap-3 bg-[#001e40]/80 border border-white/10 p-6 backdrop-blur-md shadow-2xl text-center min-w-[280px]">
+      {/* Contenedor principal con el Logo Oficial */}
+      <div className="z-10 flex flex-col items-center gap-4 bg-[#001e40]/80 border border-white/10 p-6 backdrop-blur-md shadow-2xl text-center min-w-[280px] max-w-[320px]">
+
+        {/* Logo Oficial Incorporado */}
+        <div className="w-full flex justify-center py-2">
+          <img
+            src="/media/2025/logos/Logo Oficial.png"
+            alt="Logo Oficial EERI"
+            className="h-16 w-auto object-contain drop-shadow-[0_0_12px_rgba(253,110,89,0.2)]"
+          />
+        </div>
+
+        {/* Textos Informativos */}
         <div className="flex flex-col items-center gap-1 w-full border-b border-white/10 pb-3">
           <div className="flex items-center justify-center gap-2">
             <span className="bg-[#ab3424] text-white px-2 py-0.5 font-[Montserrat] font-black text-sm tracking-tighter uppercase">
@@ -98,6 +116,7 @@ const SplashScreen = ({ onComplete }) => {
             Universidad de La Sabana
           </span>
         </div>
+
         <p className="font-mono text-[9px] text-[#fd6e59] uppercase tracking-[0.2em] animate-pulse mt-1">
           Sincronizando espectro dinámico...
         </p>
@@ -180,12 +199,10 @@ const Home = () => {
 
       {/* SECCIÓN COMITÉS */}
       <section className="bg-[#001e40] py-20 px-6 md:px-16 w-full text-white relative overflow-hidden">
-
         <div className="absolute inset-0 opacity-[0.07] bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-[size:36px_36px] pointer-events-none"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#00142b]/60 pointer-events-none"></div>
 
         <div className="max-w-7xl mx-auto relative z-10 space-y-12">
-
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-b border-white/10 pb-6 text-left">
             <div className="space-y-1">
               <span className="text-[#fd6e59] font-mono text-xs tracking-widest uppercase font-bold">// DIVISIONES OPERATIVAS</span>
@@ -209,10 +226,7 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 border border-white/10 divide-y md:divide-y-0 md:divide-x divide-white/10 bg-[#00152b]/50 backdrop-blur-sm">
             {COMMITTEES && COMMITTEES.slice(0, 3).map((comite) => {
-              // 1. Tratamiento del icono por si viene como componente u objeto
               const IconComponent = typeof comite.icon === 'object' ? comite.icon : null;
-
-              // 2. Corregir número de estudiantes buscando variantes comunes en tu objeto
               const cantidadEstudiantes = comite.activeStudents || comite.studentsCount || comite.membersCount || 0;
 
               return (
@@ -286,7 +300,6 @@ const Home = () => {
               </div>
             </div>
           </div>
-
         </div>
       </section>
 
@@ -370,16 +383,47 @@ const Home = () => {
       </section>
 
       {/* Pie de Página */}
-      <footer className="bg-[#00142b] border-t border-white/5 py-12 text-white w-full">
-        <div className="flex flex-col md:flex-row justify-between items-center w-full px-6 md:px-16 max-w-7xl mx-auto gap-8">
-          <div className="flex flex-col items-center md:items-start gap-1">
-            <span className="text-base font-[Montserrat] font-black tracking-widest text-white">EERI SABANA</span>
-            <p className="text-xs text-slate-400 font-light">
-              © 2026 Capítulo Estudiantil EERI - Universidad de La Sabana. Todos los derechos reservados.
-            </p>
+      <footer className="bg-[#00142b] border-t border-white/5 py-14 text-white w-full">
+        <div className="flex flex-col xl:flex-row justify-between items-center w-full px-6 md:px-16 max-w-7xl mx-auto gap-10">
+
+          {/* SECCIÓN DE LOGOS Y COYPRIGHT OPTIMIZADA */}
+          <div className="flex flex-col lg:flex-row items-center gap-8 flex-shrink-0 text-center lg:text-left w-full xl:w-auto">
+
+            {/* Contenedor de Logos Ampliado y Estilizado */}
+            <div className="flex items-center justify-center gap-6 bg-white/5 px-6 py-4 backdrop-blur-md border border-white/10 shadow-inner">
+              <img
+                src={logoUniversidad}
+                alt="Universidad de La Sabana"
+                className="h-10 sm:h-12 md:h-14 w-auto object-contain transition-transform duration-300 hover:scale-105"
+              />
+              <div className="h-8 w-px bg-white/20" />
+              <img
+                src={logoCapitulo}
+                alt="EERI"
+                className="h-10 sm:h-12 md:h-14 w-auto object-contain grayscale-[15%] transition-transform duration-300 hover:scale-105"
+              />
+              <div className="h-8 w-px bg-white/20" />
+              <img
+                src={logoOficialCapitulo}
+                alt="EERI Sabana"
+                className="h-10 sm:h-12 md:h-14 w-auto object-contain transition-transform duration-300 hover:scale-105"
+              />
+            </div>
+
+            {/* Texto de Identidad */}
+            <div className="flex flex-col pt-2 lg:pt-0 lg:pl-2">
+              <span className="text-[13px] font-[Montserrat] font-black tracking-[0.2em] text-white uppercase">
+                EERI SABANA
+              </span>
+              <p className="text-[11px] text-slate-400 font-[Hanken-Grotesk] font-light mt-1.5 max-w-xl leading-relaxed">
+                © 2026 Capítulo Estudiantil EERI - Universidad de La Sabana. Todos los derechos reservados.
+              </p>
+            </div>
           </div>
-          <div className="flex flex-wrap justify-center gap-6 text-xs text-slate-400">
-            <a className="hover:text-[#fd6e59] transition-colors font-mono tracking-wider" href="#">Política de Privacidad</a>
+
+          {/* Enlaces Legales */}
+          <div className="flex flex-wrap justify-center gap-8 text-xs text-slate-400 font-mono tracking-wider">
+            <a className="hover:text-[#fd6e59] transition-colors" href="#">Política de Privacidad</a>
             <a className="hover:text-[#fd6e59] transition-colors" href="#">Términos de Servicio</a>
             <a className="hover:text-[#fd6e59] transition-colors" href="#">Contactar Facultad de Ingeniería</a>
           </div>
@@ -427,9 +471,7 @@ const AppContent = () => {
   const getBackgroundClass = () => {
     switch (location.pathname) {
       case '/':
-        return 'bg-[#001e40]';
       case '/members':
-        return 'bg-[#001e40]';
       case '/events':
         return 'bg-[#001e40]';
       case '/donations':
