@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://eeri-unisabana.vercel.app/sitemap.xml

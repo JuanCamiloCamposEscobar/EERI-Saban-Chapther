@@ -169,6 +169,7 @@ const BlogPage = () => {
                       <img
                         src={selectedPost.image}
                         alt={selectedPost.title}
+                        loading="lazy"
                         className="w-full h-full object-cover"
                       />
                     </div>
@@ -183,9 +184,9 @@ const BlogPage = () => {
                     </div>
                   </div>
 
-                  <h1 className="text-2xl md:text-4xl font-['Montserrat'] font-bold text-white mb-6 leading-tight">
+                  <h2 className="text-2xl md:text-4xl font-['Montserrat'] font-bold text-white mb-6 leading-tight">
                     {selectedPost.title}
-                  </h1>
+                  </h2>
 
                   <div className="flex gap-4 font-mono text-[11px] text-[#999c9f] mb-8 pb-4 border-b border-[#2D3748]">
                     <p>AUTOR: <strong className="text-white font-semibold">{selectedPost.author.toUpperCase()}</strong></p>
@@ -262,6 +263,7 @@ const BlogPage = () => {
                       <img
                         src={featuredPost.image}
                         alt={featuredPost.title}
+                        loading="lazy"
                         className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700 opacity-90"
                       />
                       <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#1b1f21] to-transparent" />
@@ -312,6 +314,7 @@ const BlogPage = () => {
                         <img
                           src={post.image}
                           alt={post.title}
+                          loading="lazy"
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
                         />
                         <div

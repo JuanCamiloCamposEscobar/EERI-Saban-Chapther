@@ -309,6 +309,7 @@ const ProjectsPage = () => {
                 <img
                   src={featuredProject.image}
                   alt={featuredProject.title}
+                  loading="lazy"
                   className="w-full h-[240px] sm:h-[320px] md:h-[380px] object-cover grayscale md:grayscale md:group-hover:grayscale-0 transition duration-700"
                 />
                 <div className="absolute top-4 left-4 bg-[#ab3424] text-white px-3 py-1.5 text-[10px] sm:text-xs font-mono font-bold tracking-wider border-l-4 border-white z-10">
@@ -392,6 +393,7 @@ const ProjectsPage = () => {
                   <img
                     src={project.image}
                     alt={project.title}
+                    loading="lazy"
                     className="w-full h-48 sm:h-52 object-cover grayscale md:grayscale md:group-hover:grayscale-0 transition duration-700"
                   />
                   <div className="absolute inset-0 bg-black/30 group-hover:bg-transparent transition-all duration-300 pointer-events-none"></div>
@@ -468,6 +470,7 @@ const ProjectsPage = () => {
                     <img
                       src={selectedProject.image}
                       alt={selectedProject.title}
+                      loading="lazy"
                       className="w-full h-full object-cover opacity-85"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-2">
@@ -580,6 +583,7 @@ const ProjectsPage = () => {
                                                     <img
                                                       src={img}
                                                       alt={`Evidencia ${step.title}`}
+                                                      loading="lazy"
                                                       className="w-full h-full object-cover opacity-85"
                                                     />
                                                   </div>
@@ -838,7 +842,7 @@ const ProjectsPage = () => {
               ) : expandedMedia.endsWith('.mp4') || expandedMedia.endsWith('.MP4') || expandedMedia.includes('/videos/') || expandedMedia.includes('_Videos/') ? (
                 <video src={expandedMedia} controls autoPlay playsInline className="max-h-[85vh] w-full max-w-4xl rounded-lg shadow-2xl" />
               ) : (
-                <img src={expandedMedia} alt="Expanded" className="max-h-[85vh] object-contain rounded-lg shadow-2xl" />
+                <img src={expandedMedia} alt="Registro de proyecto ampliado" loading="lazy" className="max-h-[85vh] object-contain rounded-lg shadow-2xl" />
               )}
               <button
                 className="absolute -top-10 right-0 text-white hover:text-emerald-400 font-mono text-xs"

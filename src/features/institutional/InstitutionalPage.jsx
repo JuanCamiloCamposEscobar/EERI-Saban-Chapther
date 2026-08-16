@@ -140,9 +140,9 @@ const Institutional = () => {
             <span className="text-xs font-semibold tracking-[0.2em] text-white/40 block mb-3 uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}>
               Información Institucional
             </span>
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-6 text-white tracking-tight" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+            <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-white tracking-tight" style={{ fontFamily: 'Montserrat, sans-serif' }}>
               Quiénes Somos
-            </h2>
+            </h1>
             <p className="text-lg text-white/80 font-hanken leading-relaxed border-l-2 border-[#ab3424]/50 pl-6 py-2">
               El Capítulo Estudiantil EERI de la Universidad de La Sabana es una organización
               dedicada a la investigación y difusión de conocimientos en ingeniería sismorresistente.
@@ -161,6 +161,7 @@ const Institutional = () => {
             <img
               src="/media/2025/misc/group-photo.jpg"
               alt="Fotografía oficial del Capítulo EERI La Sabana"
+              loading="lazy"
               className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105 mix-blend-luminosity group-hover:mix-blend-normal"
               onError={(e) => { e.target.src = "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=800"; }}
             />

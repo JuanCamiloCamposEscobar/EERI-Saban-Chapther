@@ -269,6 +269,7 @@ const MembersPage = () => {
                     <img
                       src={facultyAdvisor.photo}
                       alt={facultyAdvisor.name}
+                      loading="lazy"
                       className="w-full h-full object-cover object-top brightness-110 contrast-110 transition-all duration-300 md:grayscale md:group-hover:grayscale-0"
                       onError={(e) => { e.target.style.display = 'none'; }}
                     />
@@ -365,6 +366,7 @@ const MembersPage = () => {
                       <img
                         src={member.photo}
                         alt={member.name}
+                        loading="lazy"
                         className="w-full h-full object-cover object-top brightness-110 contrast-110 transition-all duration-300 md:grayscale md:group-hover:grayscale-0"
                         onError={(e) => { e.target.style.display = 'none'; }}
                       />
@@ -543,6 +545,7 @@ const MembersPage = () => {
                       <img
                         src={member.photo}
                         alt={member.name}
+                        loading="lazy"
                         className="w-full h-full object-cover object-top brightness-110 contrast-110 transition-all duration-300 md:grayscale md:group-hover:grayscale-0"
                         onError={(e) => { e.target.style.display = 'none'; }}
                       />
@@ -633,6 +636,7 @@ const MembersPage = () => {
                         <img
                           src={founder.photo}
                           alt={founder.name}
+                          loading="lazy"
                           // filter-none (Móvil: color total) | md:filter md:grayscale (PC: Gris inicial) | md:group-hover:grayscale-0 (PC: Color en Hover)
                           className="w-full h-full object-cover object-center filter-none md:filter md:grayscale md:group-hover:grayscale-0 transition-all duration-500 scale-100 group-hover:scale-105"
                           onError={() => setImageError(true)}

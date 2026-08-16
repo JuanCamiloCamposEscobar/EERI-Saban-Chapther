@@ -318,6 +318,7 @@ const EventsPage = () => {
                       <img
                         src={selectedEvent.image}
                         alt={selectedEvent.title}
+                        loading="lazy"
                         className="absolute inset-0 w-full h-full object-cover opacity-90 mix-blend-screen"
                       />
                     )}
@@ -366,7 +367,8 @@ const EventsPage = () => {
                       >
                         <img
                           src={zoomedImage}
-                          alt="Vista ampliada"
+                          alt={selectedEvent?.title || "Vista ampliada de evento"}
+                          loading="lazy"
                           className="max-w-full max-h-full object-contain border border-white/10 shadow-2xl"
                         />
                         <span className="absolute top-6 right-6 text-white/50 text-xs font-mono uppercase tracking-widest">

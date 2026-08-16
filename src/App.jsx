@@ -394,18 +394,21 @@ const Home = () => {
               <img
                 src={logoUniversidad}
                 alt="Universidad de La Sabana"
+                loading="lazy"
                 className="h-10 sm:h-12 md:h-14 w-auto object-contain transition-transform duration-300 hover:scale-105"
               />
               <div className="h-8 w-px bg-white/20" />
               <img
                 src={logoCapitulo}
-                alt="EERI"
+                alt="Capítulo Estudiantil EERI"
+                loading="lazy"
                 className="h-10 sm:h-12 md:h-14 w-auto object-contain grayscale-[15%] transition-transform duration-300 hover:scale-105"
               />
               <div className="h-8 w-px bg-white/20" />
               <img
                 src={logoOficialCapitulo}
-                alt="EERI Sabana"
+                alt="Logo Oficial EERI Sabana"
+                loading="lazy"
                 className="h-10 sm:h-12 md:h-14 w-auto object-contain transition-transform duration-300 hover:scale-105"
               />
             </div>
